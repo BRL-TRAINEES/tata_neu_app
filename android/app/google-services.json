@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "68261946745",
+    "project_id": "tataneu-b02ca",
+    "storage_bucket": "tataneu-b02ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68261946745:android:3c24c30255d0b46a40bba8",
+        "android_client_info": {
+          "package_name": "com.example.tata_neu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68261946745-crv1ol0tejonah4328nh0o08hm5nmfhc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALWHfEqPSu2oOToE7sDiC3uzaZzyjfa0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68261946745-crv1ol0tejonah4328nh0o08hm5nmfhc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,8 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:tata_neu/firebase/lottie/lottie.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();  // Ensures Flutter bindings are initialized
-  await Firebase.initializeApp();  // Initializes Firebase
+  await Firebase.initializeApp();
 
   runApp(ProviderScope(child: MyApp()));
 }

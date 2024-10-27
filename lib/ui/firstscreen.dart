@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
-
+import 'package:tata_neu/ui/widgets/carousel.dart';
 import 'package:tata_neu/ui/widgets/iconslider.dart';
 import 'package:tata_neu/ui/widgets/imageiconslider.dart';
 
-class Firstscreen extends StatelessWidget {
+final currentIndexProvider = StateProvider<int>((ref) => 0);
+
+class Firstscreen extends ConsumerWidget {
   const Firstscreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentIndex = ref.watch(currentIndexProvider);
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -18,13 +23,13 @@ class Firstscreen extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(Icons.category_outlined), label: 'Categories'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.local_offer), label: 'Offers'),
+              icon: Icon(Icons.local_offer_outlined), label: 'Offers'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person_2_outlined), label: 'Account'),
         ],
         selectedItemColor: Colors.purple,
         unselectedItemColor: Colors.black,
-        currentIndex: 0,
+        currentIndex: currentIndex,
       ),
       body: CustomScrollView(
         slivers: [
@@ -89,6 +94,7 @@ class Firstscreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
+            CarouselSliderWithDots(),
             IconSlider(
               icons: [
                 Icons.qr_code_outlined,

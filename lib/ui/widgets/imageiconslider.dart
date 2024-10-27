@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Imageiconslider extends StatelessWidget {
-  final List<IconData> items;
+  final List<String> items;
   final List<String> labels;
 
   const Imageiconslider({
@@ -37,7 +37,10 @@ class Imageiconslider extends StatelessWidget {
                       CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.grey[200],
-                        child: Icon(Icons.category, color: Colors.deepPurple),
+                        backgroundImage: NetworkImage(items[index]),
+                        child: items[index].isEmpty
+                            ? Icon(Icons.category, color: Colors.deepPurple)
+                            : null,
                       ),
                       SizedBox(height: 8),
                       Text(labels[index], textAlign: TextAlign.center),

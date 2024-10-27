@@ -121,30 +121,55 @@ class Firstscreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    buildCategoryRow(['Grocery', 'Medicines'], 'Daily'),
+                    buildCategoryRow([
+                      'Grocery',
+                      'Medicines'
+                    ], [
+                      'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fgrocery.jpeg?alt=media&token=183a3c27-ab80-4d02-8feb-3f3452bdecdd',
+                      'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fmedicine.jpeg?alt=media&token=f7e5564d-6a09-4238-905e-d8b051d599de'
+                    ], 'Daily'),
                     Column(
                       children: [
-                        buildsinglecategory('NeuFlash'),
-                        buildsinglecategory('Electronics'),
+                        buildsinglecategory(
+                            'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fneuflash.jpeg?alt=media&token=d6048a44-896e-4db7-9ccb-80fcc3955cbc',
+                            'NeuFlash'),
+                        buildsinglecategory(
+                            'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Felectronics.jpeg?alt=media&token=e374aadb-78d5-4e2f-b5de-4a61fa0dc5bd',
+                            'Electronics'),
                       ],
                     )
                   ],
                 ),
-                Row(children: [
-                  buildCategoryRow(['Insurance', 'Card'], 'Finance'),
-                  buildCategoryRow(['Hotels', 'Flights'], 'Travel'),
-                ]),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      buildCategoryRow([
+                        'Insurance',
+                        'Card'
+                      ], [
+                        'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Finsurance.jpeg?alt=media&token=6b38f966-5f7b-411d-a0f5-96d102338c94',
+                        'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fcard.jpeg?alt=media&token=a3ba29ee-5c42-4b7f-b83c-606ccaeb1909'
+                      ], 'Finance'),
+                      buildCategoryRow([
+                        'Hotels',
+                        'Flights'
+                      ], [
+                        'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fhotels.jpeg?alt=media&token=a5c42b92-ac7a-4021-b60e-1ebc2b83605e',
+                        'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fflights.jpeg?alt=media&token=6f29a1b9-f397-44e7-a360-38e14a79be00'
+                      ], 'Travel'),
+                    ]),
                 Imageiconslider(
                   items: [
-                    Icons.qr_code_outlined,
-                    Icons.card_giftcard_outlined,
-                    Icons.receipt_long_outlined,
-                    Icons.monetization_on_outlined,
-                    Icons.shield_outlined,
-                    Icons.credit_card_outlined,
-                    Icons.send_outlined,
-                    Icons.bar_chart_outlined,
+                    'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Ffashiom.jpeg?alt=media&token=848b0eb9-a516-4126-86bd-d968ca1504cb',
+                    'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Ffootware.jpeg?alt=media&token=587628db-54fe-4ee3-8dd5-ad4188cc3d0a',
+                    'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fwatches.jpeg?alt=media&token=04e5c5b8-9871-4ad0-8549-86acb28f79eb',
+                    'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fjewellary.jpeg?alt=media&token=9c5d06db-6754-40e1-b677-c181afc8dd0c',
+                    'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fluxury.jpeg?alt=media&token=b633c7c0-02d3-4be8-bd23-1d63bb5f425d',
+                    'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Feyewear.jpeg?alt=media&token=376165a5-2185-4859-b314-2552d2b9413c',
+                    'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fbeauty.jpeg?alt=media&token=3c481215-12da-4357-b8ef-1359963bd3f5',
+                    'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fhome.jpeg?alt=media&token=e5aabb37-1c9f-48ca-8cb8-2cbc3c05ca5d',
                   ],
                   labels: [
                     "Fashion",

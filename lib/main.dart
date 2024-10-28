@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tata_neu/ui/firstscreen.dart';
+import 'package:tata_neu/ui/screens/homescreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,9 +16,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tata Neu Clone',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Firstscreen(),
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Color.fromARGB(255, 227, 222, 222),
+          appBarTheme: AppBarTheme(
+            color: Color.fromARGB(255, 227, 222, 222),
+          )),
+      home: Homescreen(),
     );
   }
 }

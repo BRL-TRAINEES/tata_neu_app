@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
 import 'package:tata_neu/ui/widgets/carousel.dart';
+import 'package:tata_neu/ui/widgets/fixedheader.dart';
 import 'package:tata_neu/ui/widgets/iconslider.dart';
 import 'package:tata_neu/ui/widgets/imageiconslider.dart';
 
@@ -12,32 +13,15 @@ class Firstscreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentIndex = ref.watch(currentIndexProvider);
-
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.card_giftcard_outlined), label: 'Neupass'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.category_outlined), label: 'Categories'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_offer_outlined), label: 'Offers'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_outlined), label: 'Account'),
-        ],
-        selectedItemColor: Colors.purple,
-        unselectedItemColor: Colors.black,
-        currentIndex: currentIndex,
-      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             centerTitle: true,
-            expandedHeight: MediaQuery.of(context).size.height * 0.1,
+            expandedHeight: MediaQuery.of(context).size.height * 0.095,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
+                margin: EdgeInsets.only(top: 10),
                 color: Colors.white30,
                 child: Padding(
                   padding: const EdgeInsets.all(10),
@@ -79,18 +63,13 @@ class Firstscreen extends ConsumerWidget {
               ),
             ),
           ),
+          SliverPersistentHeader(
+            pinned: true,
+            floating: false,
+            delegate: SinglePinnedHeaderDelegate(),
+          ),
           SliverList(
               delegate: SliverChildListDelegate([
-            Container(
-              height: 50,
-              decoration:
-                  BoxDecoration(color: const Color.fromARGB(255, 127, 219, 56)),
-            ),
-            Container(
-              height: 25,
-              decoration:
-                  BoxDecoration(color: const Color.fromARGB(255, 191, 157, 54)),
-            ),
             SizedBox(
               height: 10,
             ),

@@ -16,10 +16,10 @@ class Imageiconslider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: const Color.fromARGB(231, 207, 201, 201),
+          color: const Color.fromARGB(255, 255, 253, 253),
           borderRadius: BorderRadius.circular(10)),
       height: 110,
-      margin: EdgeInsets.all(7),
+      margin: EdgeInsets.only(top: 6, right: 15, left: 15, bottom: 6),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         physics: BouncingScrollPhysics(),

@@ -5,7 +5,7 @@ Widget buildCategoryRow(
   return Container(
     height: 170,
     decoration: BoxDecoration(
-      color: const Color.fromARGB(231, 207, 201, 201),
+      color: const Color.fromARGB(255, 255, 253, 253),
       borderRadius: BorderRadius.circular(10),
     ),
     margin: const EdgeInsets.all(6),
@@ -37,7 +37,7 @@ Widget buildCategoryRow(
 Widget buildsinglecategory(String imageUrl, String title) {
   return Container(
     decoration: BoxDecoration(
-      color: const Color.fromARGB(231, 207, 201, 201),
+      color: const Color.fromARGB(255, 255, 253, 253),
       borderRadius: BorderRadius.circular(10),
     ),
     margin: const EdgeInsets.all(5),

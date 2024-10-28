@@ -4,13 +4,15 @@ class Bannercontainer extends StatelessWidget {
   final String text;
   final String largerText;
   final String imageUrl;
+  final double height;
 
-  const Bannercontainer({
-    Key? key,
-    required this.text,
-    required this.largerText,
-    required this.imageUrl,
-  }) : super(key: key);
+  const Bannercontainer(
+      {Key? key,
+      required this.text,
+      required this.largerText,
+      required this.imageUrl,
+      required this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class Bannercontainer extends StatelessWidget {
             imageUrl,
             fit: BoxFit.cover,
             width: double.infinity,
-            height: 155,
+            height: height,
           ),
         ],
       ),

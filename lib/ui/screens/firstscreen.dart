@@ -164,6 +164,7 @@ class Firstscreen extends ConsumerWidget {
                   ],
                 ),
                 Bannercontainer(
+                    height: 190,
                     text: 'Unbeatable deals & discounts',
                     largerText: 'In Spotlight',
                     imageUrl:
@@ -178,6 +179,7 @@ class Firstscreen extends ConsumerWidget {
                   'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0032.jpg?alt=media&token=749e8c64-4182-4e0a-8191-c6696bd1a0f7',
                 ]),
                 Bannercontainer(
+                    height: 190,
                     text: 'Crazy deals for you',
                     largerText: 'Festive offer bonanza',
                     imageUrl:

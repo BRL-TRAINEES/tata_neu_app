@@ -62,6 +62,7 @@ class Offerscreen extends ConsumerWidget {
                   largerText: 'Tata Neu Rewards League',
                   imageUrl:
                       'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2FIMG-20241028-WA0012.jpg?alt=media&token=0931103a-8eb2-4d12-999d-cddb796ea75d',
+                  height: 190,
                 ),
                 sliderlist([
                   'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0027.jpg?alt=media&token=818f1008-16c8-4dae-a233-0b0a7d79deaf',
@@ -78,6 +79,7 @@ class Offerscreen extends ConsumerWidget {
                   largerText: 'Grab or gone',
                   imageUrl:
                       'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2FIMG-20241028-WA0013.jpg?alt=media&token=58af8548-5d24-4329-8faa-47a74966713a',
+                  height: 195,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8, left: 7, right: 7),
@@ -121,12 +123,14 @@ class Offerscreen extends ConsumerWidget {
                   largerText: 'Gift card Store',
                   imageUrl:
                       'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2FIMG-20241028-WA0011.jpg?alt=media&token=64abc325-def0-4fb3-aff9-62d103852752',
+                  height: 200,
                 ),
                 const Bannercontainer(
                   text: 'Get a Personal Loan in just 10 minutes!',
                   largerText: 'Get Credit, do more',
                   imageUrl:
                       'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2FIMG-20241028-WA0010.jpg?alt=media&token=f5622df8-0b61-461f-8299-c9ae6d7d66f5',
+                  height: 200,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8, left: 7, right: 7),
@@ -167,18 +171,21 @@ class Offerscreen extends ConsumerWidget {
                   largerText: 'Credut Card offers',
                   imageUrl:
                       'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2FIMG-20241028-WA0009.jpg?alt=media&token=a8591958-f9af-4c48-9475-4ee7d5057248',
+                  height: 200,
                 ),
                 const Bannercontainer(
                   text: 'Shop and Win',
                   largerText: 'Tata Neu Rewards League',
                   imageUrl:
                       'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2FIMG-20241028-WA0012.jpg?alt=media&token=0931103a-8eb2-4d12-999d-cddb796ea75d',
+                  height: 200,
                 ),
                 const Bannercontainer(
                   text: 'Exclusive offers for Tata Family',
                   largerText: 'Tata Shop Share Smile Offers',
                   imageUrl:
                       'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2FIMG-20241028-WA0014.jpg?alt=media&token=c5314ef1-60dc-49ab-bf35-2750c346fc15',
+                  height: 180,
                 ),
               ],
             ),

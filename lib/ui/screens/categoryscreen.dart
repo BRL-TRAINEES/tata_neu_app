@@ -26,7 +26,13 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Categories"),
+        title: Text(
+          "Categories",
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: CustomScrollView(
         controller: _scrollController,
@@ -36,7 +42,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
               (BuildContext context, int index) {
                 switch (index) {
                   case 0:
-                    return CategorySection(
+                    return const CategorySection(
                       title: 'Daily',
                       images: [
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fgrocery.jpeg?alt=media&token=183a3c27-ab80-4d02-8feb-3f3452bdecdd',
@@ -52,7 +58,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                       ],
                     );
                   case 1:
-                    return CategorySection(
+                    return const CategorySection(
                       title: 'Electronics',
                       images: [
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Felectronics.jpeg?alt=media&token=0e23fa40-e54e-4908-ab6f-ca041f5eba1b',
@@ -68,7 +74,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                       ],
                     );
                   case 2:
-                    return CategorySection(
+                    return const CategorySection(
                       title: 'Fashion & Lifestyle',
                       images: [
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Ffashiom.jpeg?alt=media&token=606b3404-035e-4d90-b86d-f95efb68a6bf',
@@ -92,7 +98,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                       ],
                     );
                   case 3:
-                    return CategorySection(
+                    return const CategorySection(
                       title: 'Cards & Loans',
                       images: [
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Fcard.jpeg?alt=media&token=05e7ae8e-5af2-4e50-9cc1-fd4ad974d8aa',
@@ -108,7 +114,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                       ],
                     );
                   case 4:
-                    return CategorySection(
+                    return const CategorySection(
                       title: 'Insurance',
                       images: [
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Fcyber.jpeg?alt=media&token=3a118a96-4a6c-4b24-a17e-190304fd626a',
@@ -130,7 +136,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                       ],
                     );
                   case 5:
-                    return CategorySection(
+                    return const CategorySection(
                       title: 'Payments',
                       images: [
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Fbill.jpeg?alt=media&token=203c08f6-f2b8-45fc-81a1-2cbc08b6fa3c',
@@ -146,7 +152,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                       ],
                     );
                   case 6:
-                    return CategorySection(
+                    return const CategorySection(
                       title: 'Travel',
                       images: [
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Fhotels.jpeg?alt=media&token=9064898d-4e98-4c97-8f9a-766245a4b1b4',
@@ -158,7 +164,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                       ],
                     );
                   case 7:
-                    return CategorySection(
+                    return const CategorySection(
                       title: 'Do More With Neu',
                       images: [
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Flabtest.jpeg?alt=media&token=572ed60c-4666-411c-9939-6dbd7e9d0ee9',
@@ -180,7 +186,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                       ],
                     );
                   default:
-                    return SizedBox.shrink();
+                    return const SizedBox.shrink();
                 }
               },
               childCount: sectionOffsets.length,

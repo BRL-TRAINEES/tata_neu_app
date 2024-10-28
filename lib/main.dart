@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Tata Neu Clone',
       theme: ThemeData(
           primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Color.fromARGB(255, 227, 222, 222),
+          scaffoldBackgroundColor: Color.fromARGB(207, 251, 250, 250),
           appBarTheme: AppBarTheme(
-            color: Color.fromARGB(255, 227, 222, 222),
+            color: Color.fromARGB(207, 251, 250, 250),
           )),
       home: Homescreen(),
     );

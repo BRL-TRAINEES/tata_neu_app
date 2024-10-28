@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
 import 'package:tata_neu/ui/widgets/carousel.dart';
 import 'package:tata_neu/ui/widgets/fixedheader.dart';
 import 'package:tata_neu/ui/widgets/iconslider.dart';
 import 'package:tata_neu/ui/widgets/imageiconslider.dart';
-
-final currentIndexProvider = StateProvider<int>((ref) => 0);
 
 class Firstscreen extends ConsumerWidget {
   const Firstscreen({super.key});
@@ -76,14 +75,14 @@ class Firstscreen extends ConsumerWidget {
             CarouselSliderWithDots(),
             IconSlider(
               icons: [
-                Icons.qr_code_outlined,
-                Icons.card_giftcard_outlined,
-                Icons.receipt_long_outlined,
-                Icons.monetization_on_outlined,
-                Icons.shield_outlined,
-                Icons.credit_card_outlined,
-                Icons.send_outlined,
-                Icons.bar_chart_outlined,
+                FontAwesomeIcons.qrcode,
+                FontAwesomeIcons.gift,
+                FontAwesomeIcons.receipt,
+                FontAwesomeIcons.moneyCheck,
+                FontAwesomeIcons.shield,
+                FontAwesomeIcons.creditCard,
+                FontAwesomeIcons.moneyBillTransfer,
+                FontAwesomeIcons.barsProgress,
               ],
               labels: [
                 "Scan & Pay",

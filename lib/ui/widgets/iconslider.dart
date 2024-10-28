@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class IconSlider extends StatelessWidget {
   final List<IconData> icons;
@@ -30,12 +31,16 @@ class IconSlider extends StatelessWidget {
             child: Column(
               children: [
                 Container(
+                  height: 50,
+                  width: 50,
                   decoration: BoxDecoration(
                       color: Color.fromARGB(255, 201, 220, 233),
                       borderRadius: BorderRadius.circular(15)),
-                  child: Icon(
-                    icons[index],
-                    size: 55,
+                  child: Center(
+                    child: FaIcon(
+                      icons[index],
+                      size: 38,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 4.0),

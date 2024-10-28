@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tata_neu/ui/widgets/bannercontainer.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
 import 'package:tata_neu/ui/widgets/carousel.dart';
 import 'package:tata_neu/ui/widgets/fixedheader.dart';
+import 'package:tata_neu/ui/widgets/grid.dart';
 import 'package:tata_neu/ui/widgets/iconslider.dart';
 import 'package:tata_neu/ui/widgets/imageiconslider.dart';
+import 'package:tata_neu/ui/widgets/sliderimage.dart';
 
 class Firstscreen extends ConsumerWidget {
   const Firstscreen({super.key});
@@ -159,7 +162,38 @@ class Firstscreen extends ConsumerWidget {
                     "Beauty",
                     "Home",
                   ],
-                )
+                ),
+                Bannercontainer(
+                    text: 'Unbeatable deals & discounts',
+                    largerText: 'In Spotlight',
+                    imageUrl:
+                        'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2Fbanner.jpg?alt=media&token=44faa171-3e23-4597-afa5-adc8958a7da9'),
+                sliderlist([
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0015.jpg?alt=media&token=9b0dc40d-2768-4429-bb2f-6feb61fde072',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0025.jpg?alt=media&token=7ec08dd3-9c1f-4638-84fa-9eb07f7f8199',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0026.jpg?alt=media&token=b954f582-cf9b-4c8d-99dd-b3a9afbfb0ca',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0029.jpg?alt=media&token=a4658709-fdbc-4e76-bf55-e778b9b3d73b',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0031.jpg?alt=media&token=195949a0-22bc-4079-a7e1-59f467db8ce8',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0033.jpg?alt=media&token=5acb3762-c079-4d87-b924-81b5c130bbd6',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fslider%2FIMG-20241028-WA0032.jpg?alt=media&token=749e8c64-4182-4e0a-8191-c6696bd1a0f7',
+                ]),
+                Bannercontainer(
+                    text: 'Crazy deals for you',
+                    largerText: 'Festive offer bonanza',
+                    imageUrl:
+                        'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fbanner%20container%2Fbanner2.jpg?alt=media&token=1ddc8b2f-5665-42ca-a780-81a758af1579'),
+                grid([
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0044.jpg?alt=media&token=6d6a3504-6af9-4866-bae8-abda407123a4',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0039.jpg?alt=media&token=e95370a7-02c6-442c-b72d-11ee5ff1b270',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0043.jpg?alt=media&token=decfdbba-f682-486d-8d2c-ab0a5ab389b9',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0042.jpg?alt=media&token=33446f9b-ff85-4542-9f23-20c2c23472e5',
+                ]),
+                sliderlist([
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0040.jpg?alt=media&token=e31a1973-5847-44e0-a1db-4c57a262a451',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0041.jpg?alt=media&token=996c956e-a8ab-44d5-9099-8a3295f765a1',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0044.jpg?alt=media&token=6d6a3504-6af9-4866-bae8-abda407123a4',
+                  'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0042.jpg?alt=media&token=33446f9b-ff85-4542-9f23-20c2c23472e5',
+                ])
               ],
             ),
           ]))

@@ -90,7 +90,7 @@ class _ForgotState extends State<Forgot> {
                 const SizedBox(height: 20),
                 TextButton(
                   onPressed: () {
-                    Get.back(); // Navigate back to the previous page
+                    Get.back(); 
                   },
                   child: const Text(
                     "Back to Login",

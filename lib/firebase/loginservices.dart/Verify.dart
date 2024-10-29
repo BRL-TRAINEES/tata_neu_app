@@ -29,7 +29,7 @@ class _VerifyState extends State<Verify> {
   reload()async{
     await FirebaseAuth.instance.currentUser!.reload(
 
-    ).then((value)=>{Get.offAll(()=>Wrapper())});  //after email verification and user click on button then all the screen will get remove and user ko wrapper page pe load kra denge and now again wrapper decide krega agar data hai then mail verify hai?-> home page else login page
+    ).then((value)=>{Get.offAll(()=>Wrapper())}); 
   }
 
  @override

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tata_neu/firebase/loginservices.dart/Home.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -81,7 +80,7 @@ class _SignupPageState extends State<SignupPage> {
         password: password.text,
       ).then((value) {
         Get.snackbar("Dear User!", "Signup Successful", backgroundColor: Colors.white);
-        Get.off(() => Home());
+        Get.off(() => HomeScreen());
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error Message", e.message ?? "An error occurred", backgroundColor: Colors.white);
@@ -100,7 +99,7 @@ class _SignupPageState extends State<SignupPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurpleAccent, Colors.purple.shade100], // Use your Tata Neu shades here
+            colors: [Colors.deepPurpleAccent, Colors.purple.shade100], 
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

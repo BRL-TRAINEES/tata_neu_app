@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tata_neu/ui/widgets/categorynavigate.dart';
 
 class CategorySection extends StatelessWidget {
   final String title;
@@ -39,7 +40,9 @@ class CategorySection extends StatelessWidget {
           itemCount: images.length,
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: () {},
+              onTap: () {
+                navigateToCategory(context, labels[index]);
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

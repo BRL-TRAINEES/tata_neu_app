@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tata_neu/ui/screens/homescreen.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -80,7 +81,7 @@ class _SignupPageState extends State<SignupPage> {
         password: password.text,
       ).then((value) {
         Get.snackbar("Dear User!", "Signup Successful", backgroundColor: Colors.white);
-        Get.off(() => HomeScreen());
+        Get.off(() => Homescreen());
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error Message", e.message ?? "An error occurred", backgroundColor: Colors.white);

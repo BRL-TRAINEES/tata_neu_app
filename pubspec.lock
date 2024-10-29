@@ -185,7 +185,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.18.1"
-
   firebase_storage:
     dependency: "direct main"
     description:
@@ -218,7 +217,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-
   flexify:
     dependency: "direct main"
     description:
@@ -266,7 +264,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-
   font_awesome_flutter:
     dependency: "direct main"
     description:
@@ -275,7 +272,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.7.0"
-
   get:
     dependency: "direct main"
     description:
@@ -284,7 +280,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.6"
-
   google_identity_services_web:
     dependency: transitive
     description:
@@ -337,10 +332,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      sha256: b9c29a161230ee03d3ccf545097fccd9b87a5264228c5d348202e0f0c28f9010
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.6"
+    version: "1.2.2"
   http_parser:
     dependency: transitive
     description:
@@ -413,19 +408,19 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.15.0"
-
   octo_image:
     dependency: transitive
     description:
       name: octo_image
       sha256: "34faa6639a78c7e3cbe79be6f9f96535867e879748ade7d17c9b1ae7536293bd"
-
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   page_transition:
     dependency: "direct main"
     description:
       name: page_transition
       sha256: dee976b1f23de9bbef5cd512fe567e9f6278caee11f5eaca9a2115c19dc49ef6
-
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"

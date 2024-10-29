@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tata_neu/firebase/loginservices.dart/Home.dart';
 import 'package:tata_neu/firebase/loginservices.dart/login.dart';
 import 'package:tata_neu/firebase/loginservices.dart/verify.dart';
+import 'package:tata_neu/ui/screens/homescreen.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({super.key});  // Constractor of wrapper accepts the key that identify the define widgets from widgets tree
@@ -21,7 +21,7 @@ class _WrapperState extends State<Wrapper> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.emailVerified) {
-              return HomeScreen();
+              return Homescreen();
             } else {
               return Verify();
             }

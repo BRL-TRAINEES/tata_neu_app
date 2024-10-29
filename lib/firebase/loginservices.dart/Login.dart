@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tata_neu/firebase/loginservices.dart/Forgot.dart';
 import 'package:tata_neu/firebase/loginservices.dart/signup.dart';
+import 'package:tata_neu/ui/screens/homescreen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
         password: password.text,
       ).then((value) {
         Get.snackbar("Dear User!", "Login Successful", backgroundColor: Colors.white);
-        Get.off(() => HomeScreen());
+        Get.off(() => Homescreen());
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error Message", e.message ?? "An error occurred", backgroundColor: Colors.white);
@@ -65,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
 
       await FirebaseAuth.instance.signInWithCredential(credential);
 
-      Get.offAll(() => Home());
+      Get.offAll(() => Homescreen());
     } catch (e) {
       print("Error during Google sign-in: $e");
       Get.snackbar('Error', 'Google sign-in failed: $e');

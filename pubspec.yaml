@@ -34,11 +34,13 @@ dependencies:
   firebase_auth: ^5.3.1
   firebase_core: ^3.6.0
   firebase_storage: ^12.3.4
+  flexify: ^2.1.1
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.6.1
   font_awesome_flutter: ^10.7.0
   google_sign_in: ^6.2.1
+  http: ^1.2.2
   smooth_page_indicator: ^1.2.0+3
 
 dev_dependencies:

@@ -44,6 +44,7 @@ dependencies:
   page_transition: ^2.0.9
   http: ^0.13.6
   animated_splash_screen: ^1.2.0
+  flexify: ^2.1.1
 
 
 

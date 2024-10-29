@@ -2,6 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tata_neu/ui/screens/homescreen.dart';
+import 'package:flexify/flexify.dart';
+import 'package:get/get.dart';
+import 'package:tata_neu/firebase/lottie/lottie.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,16 +15,21 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tata Neu Clone',
-      theme: ThemeData(
+    return Flexify(
+      designWidth: 375,
+      designHeight: 812,
+      app: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Tata Neu Clone',
+        theme: ThemeData(
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Color.fromARGB(207, 251, 250, 250),
           appBarTheme: AppBarTheme(
             color: Color.fromARGB(207, 251, 250, 250),
-          )),
-      home: Homescreen(),
+          ),
+        ),
+        home: SplashScreen(), 
+      ),
     );
   }
 }

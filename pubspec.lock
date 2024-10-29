@@ -137,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.18.1"
+  flexify:
+    dependency: "direct main"
+    description:
+      name: flexify
+      sha256: "150230ca3be5d19d702858a7cb22e93c0726ce665d68f17db813701667b8cbd6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   flutter:
     dependency: "direct main"
     description: flutter

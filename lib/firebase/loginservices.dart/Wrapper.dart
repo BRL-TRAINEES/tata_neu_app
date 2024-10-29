@@ -14,14 +14,14 @@ class Wrapper extends StatefulWidget {
 class _WrapperState extends State<Wrapper> {
   @override
 
-  Widget build(BuildContext context) {  //builder build the screen UI according to the user authentication process
+  Widget build(BuildContext context) {  
     return Scaffold(
-      body: StreamBuilder(   //StreamBuilder are powerful widgets that we mostly used with firebase that builds the UI that reacts to changes in data
-        stream: FirebaseAuth.instance.authStateChanges(),  //in streambuilder : sink is input and stream is output
+      body: StreamBuilder(   
+        stream: FirebaseAuth.instance.authStateChanges(), 
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.emailVerified) {
-              return Home();
+              return HomeScreen();
             } else {
               return Verify();
             }
@@ -33,4 +33,3 @@ class _WrapperState extends State<Wrapper> {
   }
 }
 
-//! in dart used to indicates that data is not null

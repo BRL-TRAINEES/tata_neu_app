@@ -1,7 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flexify/flexify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'package:tata_neu/firebase/lottie/lottie.dart';
 
 void main() async {
@@ -13,13 +14,20 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Login',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
+    return Flexify(
+      designWidth: 375,
+      designHeight: 812,
+      app: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Tata Neu Clone',
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: Color.fromARGB(207, 251, 250, 250),
+            appBarTheme: AppBarTheme(
+              color: Color.fromARGB(207, 251, 250, 250),
+            )),
+        home: SplashScreen(),
       ),
-      home: SplashScreen(),
     );
   }
 }

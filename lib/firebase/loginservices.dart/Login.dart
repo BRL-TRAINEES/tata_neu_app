@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tata_neu/firebase/loginservices.dart/Forgot.dart';
-import 'package:tata_neu/firebase/loginservices.dart/Home.dart';
 import 'package:tata_neu/firebase/loginservices.dart/signup.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
         password: password.text,
       ).then((value) {
         Get.snackbar("Dear User!", "Login Successful", backgroundColor: Colors.white);
-        Get.off(() => Home());
+        Get.off(() => HomeScreen());
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error Message", e.message ?? "An error occurred", backgroundColor: Colors.white);
@@ -79,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-          colors: [Colors.deepPurpleAccent, Colors.purple.shade100], // Use your Tata Neu shades here
+          colors: [Colors.deepPurpleAccent, Colors.purple.shade100], 
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

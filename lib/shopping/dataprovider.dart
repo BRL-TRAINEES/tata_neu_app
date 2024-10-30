@@ -680,3 +680,98 @@ final medicineItemsProvider = FutureProvider<List<Item>>((ref) async {
             'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fmedicine3.jpeg?alt=media&token=09d85556-ad9a-45df-9408-c19becd6d08a'),
   ];
 });
+
+final watchItemsProvider = FutureProvider<List<Item>>((ref) async {
+  return [
+    Item(
+      id: '1',
+      name: 'Rolex Submariner',
+      description:
+          'The Rolex Submariner is an iconic dive watch with a stainless steel case, unidirectional bezel, and water resistance up to 300 meters. It combines elegance with robust functionality.',
+      price: 8500.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch1.jpeg?alt=media&token=5870d0fb-080c-4307-bf6d-705f7910fc1a',
+    ),
+    Item(
+      id: '2',
+      name: 'Omega Speedmaster',
+      description:
+          'Omega Speedmaster, famously known as the Moonwatch, features a chronograph function, durable stainless steel case, and hesalite crystal, making it both a practical and stylish choice.',
+      price: 5200.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch2.jpeg?alt=media&token=d55900a8-8423-41d4-8cda-1bec70207306',
+    ),
+    Item(
+      id: '3',
+      name: 'Tag Heuer Carrera',
+      description:
+          'The Tag Heuer Carrera is a stylish, modern watch with automatic movement, scratch-resistant sapphire crystal, and an elegant chronograph function for sports enthusiasts.',
+      price: 3200.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch3.jpeg?alt=media&token=3cc67513-e047-4d46-b4ce-bb0c14be6854',
+    ),
+    Item(
+      id: '4',
+      name: 'Casio G-Shock',
+      description:
+          'This Casio G-Shock watch is designed for durability with shock resistance, water resistance up to 200 meters, and a rugged design ideal for outdoor adventures.',
+      price: 150.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch4.jpeg?alt=media&token=c7fac7fc-d6e2-4955-89d4-cc6a7c733164',
+    ),
+    Item(
+      id: '5',
+      name: 'Seiko Prospex',
+      description:
+          'Seiko Prospex offers a balance of style and functionality, with a solar-powered movement, stainless steel case, and water resistance up to 200 meters.',
+      price: 450.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch5.jpeg?alt=media&token=7e578bc7-5710-4c56-94a7-037468d7b4eb',
+    ),
+    Item(
+      id: '6',
+      name: 'Patek Philippe Nautilus',
+      description:
+          'The Patek Philippe Nautilus is a luxury timepiece with a steel case, an intricate blue dial, and an automatic movement that embodies elegance and craftsmanship.',
+      price: 30000.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch6.jpeg?alt=media&token=1cde4eb8-845b-48c6-a530-24669ca0aba3',
+    ),
+    Item(
+      id: '7',
+      name: 'Breitling Navitimer',
+      description:
+          'Breitling Navitimer is a pilot\'s watch featuring a slide rule bezel, chronograph function, and a stainless steel case, combining style with aviation heritage.',
+      price: 6500.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch7.jpeg?alt=media&token=e6de9c56-dae0-4276-a34f-e8dd9543821c',
+    ),
+    Item(
+      id: '8',
+      name: 'Apple Watch Series 7',
+      description:
+          'The Apple Watch Series 7 offers advanced health monitoring features, a larger display, and seamless integration with Apple\'s ecosystem, perfect for everyday use.',
+      price: 399.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch8.jpeg?alt=media&token=eaf15931-89f1-4c57-aeda-c3ca4c95eaee',
+    ),
+    Item(
+      id: '9',
+      name: 'Fossil Hybrid Smartwatch',
+      description:
+          'Fossil Hybrid Smartwatch blends classic analog design with smart features, including heart rate tracking, notifications, and customizable dials.',
+      price: 179.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch9.jpeg?alt=media&token=cba17f45-c577-48c3-87a7-13fed26166c5',
+    ),
+    Item(
+      id: '10',
+      name: 'Tissot Le Locle',
+      description:
+          'Tissot Le Locle is a Swiss automatic watch with a classic design, featuring Roman numerals, a silver dial, and an exhibition case back, perfect for formal wear.',
+      price: 450.0,
+      imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fshopping%2Fwatch10.jpeg?alt=media&token=c2425267-14f8-4a53-a31d-4f20739ee274',
+    ),
+  ];
+});

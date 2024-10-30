@@ -20,7 +20,7 @@ void navigateToCategory(BuildContext context, String category) {
       break;
     case 'Jewelry':
       provider = jewelryItemsProvider;
-      title = 'Jewelry Items';
+      title = 'Jewellery Items';
       break;
     case 'Electronics':
       provider = electronicsItemsProvider;
@@ -37,6 +37,10 @@ void navigateToCategory(BuildContext context, String category) {
     case 'Medicines':
       provider = medicineItemsProvider;
       title = 'Medicines';
+      break;
+    case 'Watches':
+      provider = watchItemsProvider;
+      title = 'Watches';
       break;
     case 'Cards':
       provider = cardsItemsProvider;

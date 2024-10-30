@@ -181,7 +181,7 @@ class Firstscreen extends ConsumerWidget {
                   types: [
                     "Fashion",
                     "Fashion",
-                    "Jewelry",
+                    "Watches",
                     "Jewelry",
                     "Jewelry",
                     "Fashion",

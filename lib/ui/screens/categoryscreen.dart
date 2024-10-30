@@ -107,7 +107,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'Fashion',
                         'Fashion',
                         'Jewelry',
-                        'Jewelry',
+                        'Watches',
                         'Jewelry',
                         'Fashion',
                         'Fashion',

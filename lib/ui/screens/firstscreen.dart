@@ -6,7 +6,6 @@ import 'package:tata_neu/ui/widgets/bannercontainer.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
 import 'package:tata_neu/ui/widgets/carousel.dart';
 import 'package:tata_neu/ui/widgets/categorynavigate.dart';
-import 'package:tata_neu/ui/widgets/fixedheader.dart';
 import 'package:tata_neu/ui/widgets/grid.dart';
 import 'package:tata_neu/ui/widgets/iconslider.dart';
 import 'package:tata_neu/ui/widgets/imageiconslider.dart';
@@ -25,7 +24,7 @@ class Firstscreen extends ConsumerWidget {
             expandedHeight: MediaQuery.of(context).size.height * 0.095,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 color: Colors.white30,
                 child: Padding(
                   padding: const EdgeInsets.all(10),
@@ -38,7 +37,7 @@ class Firstscreen extends ConsumerWidget {
                           width: 40,
                         ),
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       const Column(
                         children: [
                           Padding(padding: EdgeInsets.only(top: 20)),
@@ -55,61 +54,77 @@ class Firstscreen extends ConsumerWidget {
                                   color: Color.fromARGB(255, 0, 0, 0)))
                         ],
                       ),
-                      SizedBox(
-                        width: 90,
-                      ),
-
+                      const SizedBox(width: 90),
                       IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.person_2_outlined)),
+                          icon: const Icon(Icons.person_2_outlined)),
                       ElevatedButton(
                           onPressed: () {
                             navigateToCategory(context, 'Cards');
                           },
-                          child: Text('Finance'))
-
+                          child: const Text('Finance'))
                     ],
                   ),
                 ),
               ),
             ),
           ),
-          SliverPersistentHeader(
-            pinned: true,
-            floating: false,
-            delegate: SinglePinnedHeaderDelegate(),
-          ),
+          
           SliverList(
               delegate: SliverChildListDelegate([
-            SizedBox(
-              height: 10,
-            ),
-            CarouselSliderWithDots(),
-            IconSlider(
-              icons: [
-                FontAwesomeIcons.qrcode,
-                FontAwesomeIcons.gift,
-                FontAwesomeIcons.receipt,
-                FontAwesomeIcons.moneyCheck,
-                FontAwesomeIcons.shield,
-                FontAwesomeIcons.creditCard,
-                FontAwesomeIcons.moneyBillTransfer,
-                FontAwesomeIcons.barsProgress,
-              ],
-              labels: [
-                "Scan & Pay",
-                "Gift Cards",
-                "Pay Bills",
-                "Loans",
-                "Insuarance",
-                "Credit Card",
-                "Send Money",
-                "Credit Score",
-              ],
-            ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start, // Align items to the start
+                    children: [
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Search...',
+                          prefixIcon: const Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: const [
+                          Icon(Icons.location_on, color: Colors.grey),
+                          Text('heaven....')
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      CarouselSliderWithDots(),
+                      IconSlider(
+                        icons: const [
+                          FontAwesomeIcons.qrcode,
+                          FontAwesomeIcons.gift,
+                          FontAwesomeIcons.receipt,
+                          FontAwesomeIcons.moneyCheck,
+                          FontAwesomeIcons.shield,
+                          FontAwesomeIcons.creditCard,
+                          FontAwesomeIcons.moneyBillTransfer,
+                          FontAwesomeIcons.barsProgress,
+                        ],
+                        labels: const [
+                          "Scan & Pay",
+                          "Gift Cards",
+                          "Pay Bills",
+                          "Loans",
+                          "Insurance",
+                          "Credit Card",
+                          "Send Money",
+                          "Credit Score",
+                        ],
+                      ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -123,6 +138,7 @@ class Firstscreen extends ConsumerWidget {
                       types: ['Grocery', 'Medicines'],
                     ),
                     Column(
+                      
                       children: [
                         buildsinglecategory(
                             imageUrl:
@@ -230,6 +246,8 @@ class Firstscreen extends ConsumerWidget {
           ]))
         ],
       ),
+    ),
+        ])
     );
   }
 }

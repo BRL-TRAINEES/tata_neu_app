@@ -78,7 +78,7 @@ class _SignupPageState extends State<SignupPage> {
         email: email.text.trim(),
         password: password.text,
       ).then((value) {
-        Get.snackbar("Dear User!", "Signup Successful", backgroundColor: Colors.white);
+        Get.snackbar("Verification Sent","Check Your Email", backgroundColor: Colors.white);
         Get.off(() => Wrapper());
       });
     } on FirebaseAuthException catch (e) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tata_neu/firebase/loginservices.dart/Login.dart';
-import 'package:tata_neu/firebase/loginservices.dart/wrapper.dart';
 
 
 class Verify extends StatefulWidget {

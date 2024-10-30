@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tata_neu/firebase/loginservices.dart/Verify.dart';
 import 'package:tata_neu/firebase/loginservices.dart/Wrapper.dart';
-import 'package:tata_neu/ui/screens/homescreen.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -55,7 +53,6 @@ class _SignupPageState extends State<SignupPage> {
       isLoading = true;
     });
 
-    // Check email validity
     if (!email.text.trim().contains('@gmail.com')) {
       setState(() {
         errorMessage = 'Email must be a Google Email!';
@@ -66,7 +63,6 @@ class _SignupPageState extends State<SignupPage> {
       return;
     }
 
-    // Check password strength
     if (passwordStrength.isNotEmpty) {
       setState(() {
         errorMessage = 'Please fix the issues in the password.';

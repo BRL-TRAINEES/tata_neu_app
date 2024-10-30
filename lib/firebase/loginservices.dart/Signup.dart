@@ -53,9 +53,9 @@ class _SignupPageState extends State<SignupPage> {
       isLoading = true;
     });
 
-    if (!email.text.trim().contains('@gmail.com')) {
+    if (!email.text.trim().contains('@')&&!email.text.trim().contains('.')) {
       setState(() {
-        errorMessage = 'Email must be a Google Email!';
+        errorMessage = 'Enter Valid Email/Username';
       });
       setState(() {
         isLoading = false;

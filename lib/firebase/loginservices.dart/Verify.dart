@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tata_neu/firebase/loginservices.dart/wrapper.dart';
+import 'package:tata_neu/firebase/loginservices.dart/Login.dart';
 
 
 class Verify extends StatefulWidget {
@@ -29,7 +29,7 @@ class _VerifyState extends State<Verify> {
   reload()async{
     await FirebaseAuth.instance.currentUser!.reload(
 
-    ).then((value)=>{Get.offAll(()=>Wrapper())}); 
+    ).then((value)=>{Get.offAll(()=>LoginPage())}); 
   }
 
  @override

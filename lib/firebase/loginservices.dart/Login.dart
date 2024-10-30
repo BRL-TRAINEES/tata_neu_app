@@ -36,7 +36,19 @@ class _LoginPageState extends State<LoginPage> {
         email: email.text.trim(),
         password: password.text,
       ).then((value) {
-        Get.snackbar("Dear User!", "Login Successful", backgroundColor: Colors.white);
+        Get.snackbar(
+  "Welcome!", 
+  "You're now logged in and ready to explore!",
+  backgroundColor: Colors.deepPurpleAccent,
+  colorText: Colors.white,
+  icon: Icon(Icons.check_circle, color: Colors.purple.shade100, size: 28),
+  snackPosition: SnackPosition.BOTTOM,
+  borderRadius: 10,
+  margin: EdgeInsets.all(10),
+  padding: EdgeInsets.all(15),
+  duration: Duration(seconds: 3),
+  overlayBlur: 1.4,
+);
         Get.off(() => Homescreen());
       });
     } on FirebaseAuthException catch (e) {
@@ -65,9 +77,24 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       await FirebaseAuth.instance.signInWithCredential(credential);
+      Get.snackbar(
+  "Welcome!", 
+  "You're now logged in and ready to explore!",
+  backgroundColor: Colors.deepPurpleAccent,
+  colorText: Colors.white,
+  icon: Icon(Icons.check_circle, color: Colors.purple.shade100, size: 28),
+  snackPosition: SnackPosition.BOTTOM,
+  borderRadius: 10,
+  margin: EdgeInsets.all(10),
+  padding: EdgeInsets.all(15),
+  duration: Duration(seconds: 3),
+  overlayBlur: 1.4,
+);
 
       Get.offAll(() => Homescreen());
-    } catch (e) {
+    } 
+    
+    catch (e) {
       print("Error during Google sign-in: $e");
       Get.snackbar('Error', 'Google sign-in failed: $e');
     }
@@ -205,6 +232,15 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: const Text(
                     "Don't have an account? Sign Up",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),SizedBox(height:20),
+                TextButton(
+                  onPressed: () {
+                    Get.to(() => Homescreen());
+                  },
+                  child: const Text(
+                    "Continue as a Free User",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

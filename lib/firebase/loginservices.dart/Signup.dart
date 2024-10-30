@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tata_neu/ui/screens/homescreen.dart';
+import 'package:tata_neu/firebase/loginservices.dart/Wrapper.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -53,10 +53,9 @@ class _SignupPageState extends State<SignupPage> {
       isLoading = true;
     });
 
-    // Check email validity
-    if (!email.text.trim().contains('@gmail.com')) {
+    if (!email.text.trim().contains('@')&&!email.text.trim().contains('.')) {
       setState(() {
-        errorMessage = 'Email must be a Google Email!';
+        errorMessage = 'Enter Valid Email/Username';
       });
       setState(() {
         isLoading = false;
@@ -64,7 +63,6 @@ class _SignupPageState extends State<SignupPage> {
       return;
     }
 
-    // Check password strength
     if (passwordStrength.isNotEmpty) {
       setState(() {
         errorMessage = 'Please fix the issues in the password.';
@@ -81,7 +79,7 @@ class _SignupPageState extends State<SignupPage> {
         password: password.text,
       ).then((value) {
         Get.snackbar("Dear User!", "Signup Successful", backgroundColor: Colors.white);
-        Get.off(() => Homescreen());
+        Get.off(() => Wrapper());
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error Message", e.message ?? "An error occurred", backgroundColor: Colors.white);

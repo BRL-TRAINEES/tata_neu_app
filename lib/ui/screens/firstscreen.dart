@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tata_neu/ui/screens/accountscreen.dart';
 import 'package:tata_neu/ui/widgets/bannercontainer.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
 import 'package:tata_neu/ui/widgets/carousel.dart';
@@ -58,7 +57,6 @@ class Firstscreen extends ConsumerWidget {
                       SizedBox(
                         width: 90,
                       ),
-
                       IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.person_2_outlined)),
@@ -67,7 +65,6 @@ class Firstscreen extends ConsumerWidget {
                             navigateToCategory(context, 'Cards');
                           },
                           child: Text('Finance'))
-
                     ],
                   ),
                 ),
@@ -233,5 +230,3 @@ class Firstscreen extends ConsumerWidget {
     );
   }
 }
-
-

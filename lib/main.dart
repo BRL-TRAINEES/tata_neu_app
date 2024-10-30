@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:tata_neu/firebase/lottie/lottie.dart';
-// import 'package:flexify/flexify.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

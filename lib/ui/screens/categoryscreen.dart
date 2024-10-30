@@ -50,6 +50,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Finstant%20grocery.jpeg?alt=media&token=87c3c258-fc9c-4d69-9c47-2f66e317c819',
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Fmedicine.jpeg?alt=media&token=f7e5564d-6a09-4238-905e-d8b051d599de'
                       ],
+                      type: ['Grocery', 'Grocery', 'Grocery', 'Medicines'],
                       labels: [
                         'Grocery',
                         'NeuFlash',
@@ -71,6 +72,12 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'Gadgets',
                         'TV & Appliances',
                         'Croma Appliances'
+                      ],
+                      type: [
+                        'Electronics',
+                        'Electronics',
+                        'Electronics',
+                        'Electronics'
                       ],
                     );
                   case 2:
@@ -96,6 +103,16 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'Eyewear',
                         'Home',
                       ],
+                      type: [
+                        'Fashion',
+                        'Fashion',
+                        'Jewelry',
+                        'Jewelry',
+                        'Jewelry',
+                        'Fashion',
+                        'Fashion',
+                        'Electronics',
+                      ],
                     );
                   case 3:
                     return const CategorySection(
@@ -112,6 +129,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'Tata Pay Later',
                         'Free Credit Score'
                       ],
+                      type: ['Cards', 'Cards', 'Cards', 'Cards'],
                     );
                   case 4:
                     return const CategorySection(
@@ -134,6 +152,15 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'Health Insurance',
                         'Super Top Up',
                       ],
+                      type: [
+                        'Cards',
+                        'Cards',
+                        'Cards',
+                        'Cards',
+                        'Cards',
+                        'Cards',
+                        'Cards'
+                      ],
                     );
                   case 5:
                     return const CategorySection(
@@ -150,6 +177,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'Gift Card',
                         'Link Rupay Cards'
                       ],
+                      type: ['Cards', 'Cards', 'Cards', 'Cards'],
                     );
                   case 6:
                     return const CategorySection(
@@ -159,6 +187,10 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fcategories%20images%2Fflights.jpeg?alt=media&token=04efa620-ac16-4915-8aac-5234c8882122',
                       ],
                       labels: [
+                        'Hotels',
+                        'Flights',
+                      ],
+                      type: [
                         'Hotels',
                         'Flights',
                       ],
@@ -183,6 +215,15 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         'Market Insights',
                         'Stories',
                         'Gold Loans'
+                      ],
+                      type: [
+                        'Cards',
+                        'Cards',
+                        'Cards',
+                        'Grocery',
+                        'Cards',
+                        'Cards',
+                        'Jewelry',
                       ],
                     );
                   default:

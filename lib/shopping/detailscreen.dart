@@ -11,7 +11,6 @@ class DetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Reset review text on every new screen load
     ref.read(reviewProvider.notifier).state = '';
 
     final reviewController = TextEditingController(
@@ -53,7 +52,6 @@ class DetailsScreen extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Name and Price
                   Text(
                     item.name,
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -64,7 +62,6 @@ class DetailsScreen extends ConsumerWidget {
                     style: TextStyle(fontSize: 20, color: Colors.green),
                   ),
                   SizedBox(height: 20),
-                  // Description Heading
                   Text(
                     'Description',
                     style: TextStyle(
@@ -74,7 +71,6 @@ class DetailsScreen extends ConsumerWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  // Description Text
                   Container(
                     padding: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
@@ -91,7 +87,6 @@ class DetailsScreen extends ConsumerWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                  // Review TextField
                   TextField(
                     controller: reviewController,
                     onSubmitted: (text) =>
@@ -103,7 +98,6 @@ class DetailsScreen extends ConsumerWidget {
                     maxLines: 3,
                   ),
                   SizedBox(height: 20),
-
                   Center(
                     child: ElevatedButton(
                       onPressed: () {

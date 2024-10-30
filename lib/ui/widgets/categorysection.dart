@@ -5,12 +5,14 @@ class CategorySection extends StatelessWidget {
   final String title;
   final List<String> images;
   final List<String> labels;
+  final List<String> type;
 
   const CategorySection({
     Key? key,
     required this.title,
     required this.images,
     required this.labels,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -31,7 +33,7 @@ class CategorySection extends StatelessWidget {
         GridView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
             crossAxisSpacing: 8.0,
             mainAxisSpacing: 8.0,
@@ -41,7 +43,7 @@ class CategorySection extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                navigateToCategory(context, labels[index]);
+                navigateToCategory(context, type[index]);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

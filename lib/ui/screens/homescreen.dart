@@ -67,10 +67,8 @@ class _HomescreenState extends ConsumerState<Homescreen>
         currentIndex: currentIndex,
         onTap: (index) {
           ref.read(currentIndexProvider.notifier).state = index;
-          pageController.animateToPage(
+          pageController.jumpToPage(
             index,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
           );
         },
       ),

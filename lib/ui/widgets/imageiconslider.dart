@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:tata_neu/ui/widgets/categorynavigate.dart';
 
 class Imageiconslider extends StatelessWidget {
   final List<String> items;
   final List<String> labels;
+  final List<String> types;
 
   const Imageiconslider({
     Key? key,
     required this.items,
     required this.labels,
+    required this.types,
   })  : assert(items.length == labels.length,
             'items and labels must have the same length.'),
         super(key: key);
@@ -34,13 +37,18 @@ class Imageiconslider extends StatelessWidget {
                   width: 90,
                   child: Column(
                     children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.grey[200],
-                        backgroundImage: NetworkImage(items[index]),
-                        child: items[index].isEmpty
-                            ? Icon(Icons.category, color: Colors.deepPurple)
-                            : null,
+                      GestureDetector(
+                        onTap: () {
+                          navigateToCategory(context, types[index]);
+                        },
+                        child: CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Colors.grey[200],
+                          backgroundImage: NetworkImage(items[index]),
+                          child: items[index].isEmpty
+                              ? Icon(Icons.category, color: Colors.deepPurple)
+                              : null,
+                        ),
                       ),
                       SizedBox(height: 8),
                       Text(labels[index], textAlign: TextAlign.center),

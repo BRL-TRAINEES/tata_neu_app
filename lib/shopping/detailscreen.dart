@@ -23,6 +23,19 @@ class DetailsScreen extends ConsumerWidget {
           SliverAppBar(
             expandedHeight: 400,
             pinned: true,
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.shopping_cart,
+                  size: 50,
+                ),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Cart icon pressed')),
+                  );
+                },
+              ),
+            ],
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 margin: EdgeInsets.all(12),
@@ -60,6 +73,25 @@ class DetailsScreen extends ConsumerWidget {
                   Text(
                     'Price: ₹${item.price}',
                     style: TextStyle(fontSize: 20, color: Colors.green),
+                  ),
+                  SizedBox(height: 16),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Added To Cart')),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.purple,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      ),
+                      child: Text(
+                        'Buy Now',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 20),
                   Text(
@@ -103,13 +135,15 @@ class DetailsScreen extends ConsumerWidget {
                       onPressed: () {
                         final review = ref.read(reviewProvider);
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Review submitted: $review')),
+                          SnackBar(content: Text('Review submitted. $review')),
                         );
                       },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.purple,
+                      ),
                       child: Text(
                         'Submit Review',
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 0, 0)),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),

@@ -237,7 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),SizedBox(height:20),
                 TextButton(
                   onPressed: () {
-                    Get.to(() => Homescreen());
+                    Get.offAll(() => Homescreen());
                   },
                   child: const Text(
                     "Continue as a Free User",

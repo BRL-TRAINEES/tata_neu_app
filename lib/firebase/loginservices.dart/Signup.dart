@@ -13,14 +13,23 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+  final TextEditingController confirmPassword = TextEditingController(); 
   bool isLoading = false;
   bool obscureText = true;
+  bool obscureConfirmText = true; 
   String passwordStrength = '';
   String errorMessage = '';
+  String confirmPasswordError = ''; 
 
   void togglePasswordVisibility() {
     setState(() {
       obscureText = !obscureText;
+    });
+  }
+
+  void toggleConfirmPasswordVisibility() {
+    setState(() {
+      obscureConfirmText = !obscureConfirmText;
     });
   }
 
@@ -51,9 +60,10 @@ class _SignupPageState extends State<SignupPage> {
   signUp() async {
     setState(() {
       isLoading = true;
+      confirmPasswordError = '';
     });
 
-    if (!email.text.trim().contains('@')&&!email.text.trim().contains('.')) {
+    if (!email.text.trim().contains('@') && !email.text.trim().contains('.')) {
       setState(() {
         errorMessage = 'Enter Valid Email/Username';
       });
@@ -73,12 +83,22 @@ class _SignupPageState extends State<SignupPage> {
       return;
     }
 
+    if (password.text != confirmPassword.text) {
+      setState(() {
+        confirmPasswordError = 'Both passwords do not match.';
+      });
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
+
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email.text.trim(),
         password: password.text,
       ).then((value) {
-        Get.snackbar("Verification Sent","Check Your Email", backgroundColor: Colors.white);
+        Get.snackbar("Verification Sent", "Check Your Email", backgroundColor: Colors.white);
         Get.off(() => Wrapper());
       });
     } on FirebaseAuthException catch (e) {
@@ -98,7 +118,7 @@ class _SignupPageState extends State<SignupPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurpleAccent, Colors.purple.shade100], 
+            colors: [Colors.deepPurpleAccent, Colors.purple.shade100],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -160,6 +180,35 @@ class _SignupPageState extends State<SignupPage> {
                           style: TextStyle(color: Colors.red),
                         ),
                       ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller: confirmPassword,
+                      obscureText: obscureConfirmText,
+                      decoration: InputDecoration(
+                        labelText: 'Confirm Password',
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.1),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        prefixIcon: Icon(Icons.lock, color: Colors.purple.shade100),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            obscureConfirmText ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.purple.shade100,
+                          ),
+                          onPressed: toggleConfirmPasswordVisibility,
+                        ),
+                      ),
+                    ),
+                    if (confirmPasswordError.isNotEmpty) // Display error if passwords do not match
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          confirmPasswordError,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
                   ],
                 ),
                 if (errorMessage.isNotEmpty)
@@ -201,7 +250,7 @@ class _SignupPageState extends State<SignupPage> {
                 const SizedBox(height: 20),
                 TextButton(
                   onPressed: () {
-                    Get.back(); 
+                    Get.back();
                   },
                   child: const Text(
                     "Already have an account? Login",

@@ -9,7 +9,7 @@ import 'package:tata_neu/ui/widgets/grid.dart';
 import 'package:tata_neu/ui/widgets/iconslider.dart';
 import 'package:tata_neu/ui/widgets/imageiconslider.dart';
 import 'package:tata_neu/ui/widgets/sliderimage.dart';
-import 'package:tata_neu/geolocater/geoproviders.dart'; // Import the geoproviders file
+import 'package:tata_neu/geolocater/geoproviders.dart';
 
 final isTextFieldFocusedProvider = StateProvider<bool>((ref) => false);
 
@@ -28,7 +28,7 @@ class Firstscreen extends ConsumerWidget {
       focusNode.unfocus();
     });
 
-    final addressAsyncValue = ref.watch(addressProvider); // Watch the addressProvider
+    final addressAsyncValue = ref.watch(addressProvider);
 
     return Scaffold(
         body: CustomScrollView(slivers: [
@@ -112,7 +112,7 @@ class Firstscreen extends ConsumerWidget {
                             ? placemarks.first.locality! : 'No address found', style: TextStyle(fontSize: 11),);
 
                         },
-                        loading: () => const CircularProgressIndicator(),
+                        loading: () => Text('Loading Location'),
                         error: (err, stack) => Text(
                           'Error: $err',
                           style: TextStyle(color: Colors.red),

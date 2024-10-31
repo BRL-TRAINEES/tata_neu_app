@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tata_neu/ui/screens/accountscreen.dart';
 import 'package:tata_neu/ui/widgets/bannercontainer.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
 import 'package:tata_neu/ui/widgets/carousel.dart';
@@ -10,121 +9,147 @@ import 'package:tata_neu/ui/widgets/grid.dart';
 import 'package:tata_neu/ui/widgets/iconslider.dart';
 import 'package:tata_neu/ui/widgets/imageiconslider.dart';
 import 'package:tata_neu/ui/widgets/sliderimage.dart';
+import 'package:tata_neu/geolocater/geoproviders.dart'; // Import the geoproviders file
+
+final isTextFieldFocusedProvider = StateProvider<bool>((ref) => false);
 
 class Firstscreen extends ConsumerWidget {
   const Firstscreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isFocused = ref.watch(isTextFieldFocusedProvider);
+    final focusNode = FocusNode();
+    if (isFocused) {
+      focusNode.requestFocus();
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(isTextFieldFocusedProvider.notifier).state = false;
+      focusNode.unfocus();
+    });
+
+    final addressAsyncValue = ref.watch(addressProvider); // Watch the addressProvider
+
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            centerTitle: true,
-            expandedHeight: MediaQuery.of(context).size.height * 0.095,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                margin: const EdgeInsets.only(top: 10),
-                color: Colors.white30,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: CustomScrollView(slivers: [
+      SliverAppBar(
+        centerTitle: true,
+        expandedHeight: MediaQuery.of(context).size.height * 0.095,
+        flexibleSpace: FlexibleSpaceBar(
+          background: Container(
+            margin: const EdgeInsets.only(top: 10),
+            color: Colors.white30,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ClipOval(
+                    child: Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Ftata%20neu%20logo.png?alt=media&token=4c5dbe58-581c-4b48-9444-07deadb15f41',
+                      width: 40,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const Column(
                     children: [
-                      ClipOval(
-                        child: Image.network(
-                          'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fothers%2Ftata%20neu%20logo.png?alt=media&token=4c5dbe58-581c-4b48-9444-07deadb15f41',
-                          width: 40,
-                        ),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      Text(
+                        'Earn Upto 5%',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Color.fromARGB(255, 49, 48, 48)),
                       ),
-                      const SizedBox(width: 8),
-                      const Column(
-                        children: [
-                          Padding(padding: EdgeInsets.only(top: 20)),
-                          Text(
-                            'Earn Upto 5%',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Color.fromARGB(255, 49, 48, 48)),
-                          ),
-                          Text('NeuCoins',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 0, 0, 0)))
-                        ],
-                      ),
-                      const SizedBox(width: 90),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.person_2_outlined)),
-                      ElevatedButton(
-                          onPressed: () {
-                            navigateToCategory(context, 'Cards');
-                          },
-                          child: const Text('Finance'))
+                      Text('NeuCoins',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 0, 0, 0)))
                     ],
                   ),
-                ),
+                  const SizedBox(width: 90),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.person_2_outlined)),
+                  ElevatedButton(
+                      onPressed: () {
+                        navigateToCategory(context, 'Cards');
+                      },
+                      child: const Text('Finance'))
+                ],
               ),
             ),
           ),
-          
-          SliverList(
-              delegate: SliverChildListDelegate([
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start, // Align items to the start
+        ),
+      ),
+      SliverList(
+        delegate: SliverChildListDelegate(
+          [
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(
+                    focusNode: focusNode,
+                    decoration: InputDecoration(
+                      hintText: 'Search...',
+                      prefixIcon: const Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
                     children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search...',
-                          prefixIcon: const Icon(Icons.search),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide.none,
-                          ),
-                          filled: true,
-                          fillColor: Colors.grey[200],
+                      const Icon(Icons.location_on, color: Colors.grey),
+                      addressAsyncValue.when(
+                        data: (placemarks) {
+                          return Text(
+                            placemarks.isNotEmpty && placemarks.first.locality != null
+                            ? placemarks.first.locality! : 'No address found', style: TextStyle(fontSize: 11),);
+
+                        },
+                        loading: () => const CircularProgressIndicator(),
+                        error: (err, stack) => Text(
+                          'Error: $err',
+                          style: TextStyle(color: Colors.red),
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: const [
-                          Icon(Icons.location_on, color: Colors.grey),
-                          Text('heaven....')
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      CarouselSliderWithDots(),
-                      IconSlider(
-                        icons: const [
-                          FontAwesomeIcons.qrcode,
-                          FontAwesomeIcons.gift,
-                          FontAwesomeIcons.receipt,
-                          FontAwesomeIcons.moneyCheck,
-                          FontAwesomeIcons.shield,
-                          FontAwesomeIcons.creditCard,
-                          FontAwesomeIcons.moneyBillTransfer,
-                          FontAwesomeIcons.barsProgress,
-                        ],
-                        labels: const [
-                          "Scan & Pay",
-                          "Gift Cards",
-                          "Pay Bills",
-                          "Loans",
-                          "Insurance",
-                          "Credit Card",
-                          "Send Money",
-                          "Credit Score",
-                        ],
-                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 15),
+            CarouselSliderWithDots(),
+            IconSlider(
+              icons: const [
+                FontAwesomeIcons.qrcode,
+                FontAwesomeIcons.gift,
+                FontAwesomeIcons.receipt,
+                FontAwesomeIcons.moneyCheck,
+                FontAwesomeIcons.shield,
+                FontAwesomeIcons.creditCard,
+                FontAwesomeIcons.moneyBillTransfer,
+                FontAwesomeIcons.barsProgress,
+              ],
+              labels: const [
+                "Scan & Pay",
+                "Gift Cards",
+                "Pay Bills",
+                "Loans",
+                "Insurance",
+                "Credit Card",
+                "Send Money",
+                "Credit Score",
+              ],
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -138,7 +163,6 @@ class Firstscreen extends ConsumerWidget {
                       types: ['Grocery', 'Medicines'],
                     ),
                     Column(
-                      
                       children: [
                         buildsinglecategory(
                             imageUrl:
@@ -242,14 +266,10 @@ class Firstscreen extends ConsumerWidget {
                   'https://firebasestorage.googleapis.com/v0/b/tataneu-b02ca.appspot.com/o/assets%20image%2Fgrid%2FIMG-20241028-WA0042.jpg?alt=media&token=33446f9b-ff85-4542-9f23-20c2c23472e5',
                 ])
               ],
-            ),
-          ]))
-        ],
+            )
+          ],
+        ),
       ),
-    ),
-        ])
-    );
+    ]));
   }
 }
-
-

@@ -5,8 +5,7 @@ import 'package:tata_neu/firebase/loginservices.dart/verify.dart';
 import 'package:tata_neu/ui/screens/homescreen.dart';
 
 class Wrapper extends StatefulWidget {
-  const Wrapper({super.key});  // Constractor of wrapper accepts the key that identify the define widgets from widgets tree
-
+  const Wrapper({super.key});  
   @override
   State<Wrapper> createState() => _WrapperState();
 }

@@ -166,4 +166,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     searchController.dispose();
     super.dispose();
   }
+
 }
+

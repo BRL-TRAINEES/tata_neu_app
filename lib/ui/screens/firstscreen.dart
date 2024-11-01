@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:tata_neu/search/searchscreen.dart';
 import 'package:tata_neu/ui/widgets/bannercontainer.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
 import 'package:tata_neu/ui/widgets/carousel.dart';
@@ -89,16 +91,22 @@ class Firstscreen extends ConsumerWidget {
               margin: EdgeInsets.all(10),
               child: Column(
                 children: [
-                  TextField(
-                    focusNode: focusNode,
-                    decoration: InputDecoration(
-                      hintText: 'Search...',
-                      prefixIcon: const Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => SearchScreen());
+                    },
+                    child: AbsorbPointer(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Search...',
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                        ),
                       ),
-                      filled: true,
-                      fillColor: Colors.grey[200],
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -112,7 +120,7 @@ class Firstscreen extends ConsumerWidget {
                             ? placemarks.first.locality! : 'No address found', style: TextStyle(fontSize: 11),);
 
                         },
-                        loading: () => Text('Loading Location'),
+                        loading: () => Text('Loading Location...'),
                         error: (err, stack) => Text(
                           'Error: $err',
                           style: TextStyle(color: Colors.red),

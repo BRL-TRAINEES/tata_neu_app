@@ -9,6 +9,7 @@ import 'package:tata_neu/ui/widgets/grid.dart';
 import 'package:tata_neu/ui/widgets/iconslider.dart';
 import 'package:tata_neu/ui/widgets/imageiconslider.dart';
 import 'package:tata_neu/ui/widgets/sliderimage.dart';
+import 'package:tata_neu/geolocater/geoproviders.dart';
 
 final isTextFieldFocusedProvider = StateProvider<bool>((ref) => false);
 
@@ -26,6 +27,9 @@ class Firstscreen extends ConsumerWidget {
       ref.read(isTextFieldFocusedProvider.notifier).state = false;
       focusNode.unfocus();
     });
+
+    final addressAsyncValue = ref.watch(addressProvider);
+
     return Scaffold(
         body: CustomScrollView(slivers: [
       SliverAppBar(
@@ -99,9 +103,24 @@ class Firstscreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 8),
                   Row(
-                    children: const [
-                      Icon(Icons.location_on, color: Colors.grey),
-                      Text('heaven....')
+                    children: [
+                      const Icon(Icons.location_on, color: Colors.grey),
+                      addressAsyncValue.when(
+                        data: (placemarks) {
+                          return Text(
+                            placemarks.isNotEmpty &&
+                                    placemarks.first.locality != null
+                                ? placemarks.first.locality!
+                                : 'No address found',
+                            style: TextStyle(fontSize: 11),
+                          );
+                        },
+                        loading: () => const CircularProgressIndicator(),
+                        error: (err, stack) => Text(
+                          'Error: $err',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
                     ],
                   ),
                 ],

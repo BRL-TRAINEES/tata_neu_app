@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
+
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+
 import 'package:tata_neu/search/searchscreen.dart';
 import 'package:tata_neu/ui/widgets/bannercontainer.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
@@ -116,11 +119,13 @@ class Firstscreen extends ConsumerWidget {
                       addressAsyncValue.when(
                         data: (placemarks) {
                           return Text(
+
                             placemarks.isNotEmpty && placemarks.first.locality != null
                             ? placemarks.first.locality! : 'No address found', style: TextStyle(fontSize: 11),);
 
                         },
                         loading: () => Text('Loading Location...'),
+
                         error: (err, stack) => Text(
                           'Error: $err',
                           style: TextStyle(color: Colors.red),
@@ -280,4 +285,5 @@ class Firstscreen extends ConsumerWidget {
       ),
     ]));
   }
+
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+import 'package:tata_neu/shopping/cartscreen.dart';
 import 'package:tata_neu/shopping/datamodel.dart';
 import 'package:tata_neu/shopping/detailscreen.dart';
 
@@ -14,7 +16,20 @@ class ItemListScreen extends ConsumerWidget {
     final asyncItems = ref.watch(itemsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(
+        title: Text(title),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              size: 50,
+            ),
+            onPressed: () {
+              Get.to(CartScreen());
+            },
+          ),
+        ],
+      ),
       body: asyncItems.when(
         data: (items) {
           return GridView.builder(

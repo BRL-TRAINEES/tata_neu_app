@@ -24,4 +24,6 @@ final allItemsProvider = FutureProvider<List<Item>>((ref) async {
     ...watchItems,
     ...cardItems,
   ];
+
 });
+

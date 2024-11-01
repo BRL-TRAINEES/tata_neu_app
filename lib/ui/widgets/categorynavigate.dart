@@ -5,7 +5,6 @@ import 'package:tata_neu/shopping/dataprovider.dart';
 import 'package:tata_neu/shopping/itemsscreen.dart';
 
 void navigateToCategory(BuildContext context, String category) {
-  // Match the category to the correct provider
   final FutureProvider<List<Item>> provider;
   String title;
 

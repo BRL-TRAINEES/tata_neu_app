@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+import 'package:tata_neu/shopping/cartprovider.dart';
+import 'package:tata_neu/shopping/cartscreen.dart';
 import 'package:tata_neu/shopping/datamodel.dart';
 
 final reviewProvider = StateProvider<String>((ref) => '');
@@ -30,9 +33,7 @@ class DetailsScreen extends ConsumerWidget {
                   size: 50,
                 ),
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Cart icon pressed')),
-                  );
+                  Get.to(CartScreen());
                 },
               ),
             ],
@@ -78,8 +79,12 @@ class DetailsScreen extends ConsumerWidget {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
+                        ref.read(cartProvider.notifier).addToCart(item);
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Added To Cart')),
+                          SnackBar(
+                            content: Text('Added to Cart'),
+                            duration: Duration(seconds: 1),
+                          ),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -135,7 +140,10 @@ class DetailsScreen extends ConsumerWidget {
                       onPressed: () {
                         final review = ref.read(reviewProvider);
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Review submitted. $review')),
+                          SnackBar(
+                            content: Text('Review submitted. $review'),
+                            duration: Duration(seconds: 1),
+                          ),
                         );
                       },
                       style: ElevatedButton.styleFrom(

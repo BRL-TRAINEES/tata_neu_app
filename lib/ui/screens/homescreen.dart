@@ -41,15 +41,16 @@ class _HomescreenState extends ConsumerState<Homescreen>
         onPageChanged: (index) {
           ref.read(currentIndexProvider.notifier).state = index;
         },
-        children: [
+        children:  [
           Firstscreen(),
           Neupassscreen(),
           CategoryScreen(),
           Offerscreen(),
-          Accountscreen(),
+          ProfilePage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
@@ -59,16 +60,19 @@ class _HomescreenState extends ConsumerState<Homescreen>
           BottomNavigationBarItem(
               icon: Icon(Icons.local_offer_outlined), label: 'Offers'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_outlined), label: 'Account'),
+              icon: Icon(Icons.settings), label: 'Settings'),
         ],
         selectedItemColor: Colors.purple,
         unselectedItemColor: Colors.black,
         showUnselectedLabels: true,
+        elevation: 8.0, 
         currentIndex: currentIndex,
         onTap: (index) {
           ref.read(currentIndexProvider.notifier).state = index;
-          pageController.jumpToPage(
+          pageController.animateToPage(
             index,
+            duration: const Duration(milliseconds: 290),
+            curve: Curves.easeInOut,
           );
         },
       ),

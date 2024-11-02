@@ -79,8 +79,9 @@ class Firstscreen extends ConsumerWidget {
                   ElevatedButton(
                       onPressed: () {
                         navigateToCategory(context, 'Cards');
-                      },
-                      child: const Text('Finance'))
+                      },  style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,),
+                      child: const Text('Finance',style: TextStyle(color: Colors.white,)))
                 ],
               ),
             ),
@@ -121,7 +122,7 @@ class Firstscreen extends ConsumerWidget {
                           return Text(
 
                             placemarks.isNotEmpty && placemarks.first.locality != null
-                            ? placemarks.first.locality! : 'No address found', style: TextStyle(fontSize: 11),);
+                            ? '${placemarks.first.locality!} - ${placemarks.first.postalCode}'  : 'No address found', style: TextStyle(fontSize: 11),);
 
                         },
                         loading: () => Text('Loading Location...'),

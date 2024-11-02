@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
   borderRadius: 10,
   margin: EdgeInsets.all(10),
   padding: EdgeInsets.all(15),
-  duration: Duration(seconds: 3),
+  duration: Duration(milliseconds: 1500),
   overlayBlur: 1.4,
 );
         Get.off(() => Homescreen());
@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
   borderRadius: 10,
   margin: EdgeInsets.all(10),
   padding: EdgeInsets.all(15),
-  duration: Duration(seconds: 3),
+  duration: Duration(microseconds: 1500),
   overlayBlur: 1.4,
 );
 

@@ -41,7 +41,7 @@ class _HomescreenState extends ConsumerState<Homescreen>
         onPageChanged: (index) {
           ref.read(currentIndexProvider.notifier).state = index;
         },
-        children:  [
+        children: [
           Firstscreen(),
           Neupassscreen(),
           CategoryScreen(),
@@ -65,15 +65,11 @@ class _HomescreenState extends ConsumerState<Homescreen>
         selectedItemColor: Colors.purple,
         unselectedItemColor: Colors.black,
         showUnselectedLabels: true,
-        elevation: 8.0, 
+        elevation: 8.0,
         currentIndex: currentIndex,
         onTap: (index) {
           ref.read(currentIndexProvider.notifier).state = index;
-          pageController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 290),
-            curve: Curves.easeInOut,
-          );
+          pageController.jumpToPage(index);
         },
       ),
     );

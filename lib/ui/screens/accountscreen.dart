@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tata_neu/firebase/loginservices.dart/login.dart';
+import 'package:tata_neu/shopping/reviewscreen.dart';
 
 final authStateProvider = StreamProvider<User?>((ref) {
   return FirebaseAuth.instance.authStateChanges();
@@ -16,7 +17,8 @@ final userTypeProvider = Provider<bool>((ref) {
   return user?.uid != null;
 });
 
-final profileImageProvider = StateNotifierProvider<ProfileImageNotifier, String?>((ref) {
+final profileImageProvider =
+    StateNotifierProvider<ProfileImageNotifier, String?>((ref) {
   final authState = ref.watch(authStateProvider);
   return ProfileImageNotifier(authState.value);
 });
@@ -60,7 +62,7 @@ class ProfileImageNotifier extends StateNotifier<String?> {
             .ref('profileimage/${currentUser!.uid}.png')
             .putFile(file);
         loadProfileImage();
-      } catch(e){}
+      } catch (e) {}
     }
   }
 }
@@ -111,7 +113,9 @@ class ProfilePage extends ConsumerWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            ref.read(profileImageProvider.notifier).uploadProfileImage();
+                            ref
+                                .read(profileImageProvider.notifier)
+                                .uploadProfileImage();
                           },
                           child: CircleAvatar(
                             radius: 40,
@@ -120,7 +124,8 @@ class ProfilePage extends ConsumerWidget {
                                 : null,
                             backgroundColor: Colors.grey.shade200,
                             child: imageUrl == null || !isPremiumUser
-                                ? Icon(Icons.person, size: 50, color: Colors.grey.shade400)
+                                ? Icon(Icons.person,
+                                    size: 50, color: Colors.grey.shade400)
                                 : null,
                           ),
                         ),
@@ -130,15 +135,25 @@ class ProfilePage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                isPremiumUser ? (user?.displayName ?? 'User') : 'Free User',
-                                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                                isPremiumUser
+                                    ? (user?.displayName ?? 'User')
+                                    : 'Free User',
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                isPremiumUser ? (user?.email ?? 'No email') : 'Upgrade to Premium',
+                                isPremiumUser
+                                    ? (user?.email ?? 'No email')
+                                    : 'Upgrade to Premium',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: isPremiumUser ? Colors.black : const Color.fromARGB(255, 212, 120, 228),
-                                  fontWeight: isPremiumUser ? FontWeight.normal : FontWeight.bold,
+                                  color: isPremiumUser
+                                      ? Colors.black
+                                      : const Color.fromARGB(
+                                          255, 212, 120, 228),
+                                  fontWeight: isPremiumUser
+                                      ? FontWeight.normal
+                                      : FontWeight.bold,
                                 ),
                               ),
                             ],
@@ -154,11 +169,13 @@ class ProfilePage extends ConsumerWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginPage()),
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 223, 165, 233),
+                          backgroundColor:
+                              const Color.fromARGB(255, 223, 165, 233),
                         ),
                         child: const Text('Login to Use all services'),
                       ),
@@ -167,7 +184,16 @@ class ProfilePage extends ConsumerWidget {
                   _buildSection("ACCOUNT", [
                     _buildRow(Icons.person, 'Profile'),
                     _buildRow(Icons.maps_ugc, 'Address'),
-                    _buildRow(Icons.price_change_outlined, 'My Reward'),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Reviewscreen(),
+                            ),
+                          );
+                        },
+                        child: _buildRow(Icons.message_outlined, 'My reviews')),
                   ]),
                   const SizedBox(height: 20),
                   _buildSection("FINANCE", [
@@ -178,7 +204,8 @@ class ProfilePage extends ConsumerWidget {
                   ]),
                   const SizedBox(height: 20),
                   _buildSection("SETTING", [
-                    _buildRow(Icons.lock_clock_outlined, 'Security and privacy'),
+                    _buildRow(
+                        Icons.lock_clock_outlined, 'Security and privacy'),
                     _buildRow(Icons.safety_check, 'Communication preferences'),
                   ]),
                   const SizedBox(height: 20),
@@ -194,7 +221,10 @@ class ProfilePage extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 222, 109, 109),
                     ),
-                    child: const Text('Logout',style: TextStyle(color: Colors.white),),
+                    child: const Text(
+                      'Logout',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ],
               ),
@@ -214,13 +244,18 @@ class ProfilePage extends ConsumerWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 15, offset: const Offset(0, 10)),
+          BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 15,
+              offset: const Offset(0, 10)),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(title,
+              style:
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 20),
           ...items,
         ],

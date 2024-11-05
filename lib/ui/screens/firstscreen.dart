@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-
 import 'package:tata_neu/search/searchscreen.dart';
 import 'package:tata_neu/ui/widgets/bannercontainer.dart';
 import 'package:tata_neu/ui/widgets/blocks.dart';
@@ -79,9 +75,14 @@ class Firstscreen extends ConsumerWidget {
                   ElevatedButton(
                       onPressed: () {
                         navigateToCategory(context, 'Cards');
-                      },  style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,),
-                      child: const Text('Finance',style: TextStyle(color: Colors.white,)))
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                      ),
+                      child: const Text('Finance',
+                          style: TextStyle(
+                            color: Colors.white,
+                          )))
                 ],
               ),
             ),
@@ -97,7 +98,12 @@ class Firstscreen extends ConsumerWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => SearchScreen());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SearchScreen(),
+                        ),
+                      );
                     },
                     child: AbsorbPointer(
                       child: TextField(
@@ -120,13 +126,14 @@ class Firstscreen extends ConsumerWidget {
                       addressAsyncValue.when(
                         data: (placemarks) {
                           return Text(
-
-                            placemarks.isNotEmpty && placemarks.first.locality != null
-                            ? '${placemarks.first.locality!} - ${placemarks.first.postalCode}'  : 'No address found', style: TextStyle(fontSize: 11),);
-
+                            placemarks.isNotEmpty &&
+                                    placemarks.first.locality != null
+                                ? '${placemarks.first.locality!} - ${placemarks.first.postalCode}'
+                                : 'No address found',
+                            style: TextStyle(fontSize: 11),
+                          );
                         },
                         loading: () => Text('Loading Location...'),
-
                         error: (err, stack) => Text(
                           'Error: $err',
                           style: TextStyle(color: Colors.red),
@@ -286,5 +293,4 @@ class Firstscreen extends ConsumerWidget {
       ),
     ]));
   }
-
 }

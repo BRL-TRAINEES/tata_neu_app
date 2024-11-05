@@ -32,29 +32,34 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
         email: email.text.trim(),
         password: password.text,
-      ).then((value) {
+      )
+          .then((value) {
         Get.snackbar(
-  "Welcome!", 
-  "You're now logged in and ready to explore!",
-  backgroundColor: Colors.deepPurpleAccent,
-  colorText: Colors.white,
-  icon: Icon(Icons.check_circle, color: Colors.purple.shade100, size: 28),
-  snackPosition: SnackPosition.BOTTOM,
-  borderRadius: 10,
-  margin: EdgeInsets.all(10),
-  padding: EdgeInsets.all(15),
-  duration: Duration(milliseconds: 1500),
-  overlayBlur: 1.4,
-);
+          "Welcome!",
+          "You're now logged in and ready to explore!",
+          backgroundColor: Colors.deepPurpleAccent,
+          colorText: Colors.white,
+          icon:
+              Icon(Icons.check_circle, color: Colors.purple.shade100, size: 28),
+          snackPosition: SnackPosition.BOTTOM,
+          borderRadius: 10,
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(15),
+          duration: Duration(milliseconds: 1500),
+          overlayBlur: 1.4,
+        );
         Get.off(() => Homescreen());
       });
     } on FirebaseAuthException catch (e) {
-      Get.snackbar("Error Message", e.message ?? "An error occurred", backgroundColor: Colors.white);
+      Get.snackbar("Error Message", e.message ?? "An error occurred",
+          backgroundColor: Colors.white);
     } catch (e) {
-      Get.snackbar('Error Message', e.toString(), backgroundColor: Colors.white);
+      Get.snackbar('Error Message', e.toString(),
+          backgroundColor: Colors.white);
     } finally {
       setState(() {
         isLoading = false;
@@ -69,7 +74,8 @@ class _LoginPageState extends State<LoginPage> {
         return;
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -78,23 +84,21 @@ class _LoginPageState extends State<LoginPage> {
 
       await FirebaseAuth.instance.signInWithCredential(credential);
       Get.snackbar(
-  "Welcome!", 
-  "You're now logged in and ready to explore!",
-  backgroundColor: Colors.deepPurpleAccent,
-  colorText: Colors.white,
-  icon: Icon(Icons.check_circle, color: Colors.purple.shade100, size: 28),
-  snackPosition: SnackPosition.BOTTOM,
-  borderRadius: 10,
-  margin: EdgeInsets.all(10),
-  padding: EdgeInsets.all(15),
-  duration: Duration(microseconds: 1500),
-  overlayBlur: 1.4,
-);
+        "Welcome!",
+        "You're now logged in and ready to explore!",
+        backgroundColor: Colors.deepPurpleAccent,
+        colorText: Colors.white,
+        icon: Icon(Icons.check_circle, color: Colors.purple.shade100, size: 28),
+        snackPosition: SnackPosition.BOTTOM,
+        borderRadius: 10,
+        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.all(15),
+        duration: Duration(microseconds: 1500),
+        overlayBlur: 1.4,
+      );
 
       Get.offAll(() => Homescreen());
-    } 
-    
-    catch (e) {
+    } catch (e) {
       print("Error during Google sign-in: $e");
       Get.snackbar('Error', 'Google sign-in failed: $e');
     }
@@ -106,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-          colors: [Colors.deepPurpleAccent, Colors.purple.shade100], 
+            colors: [Colors.deepPurpleAccent, Colors.purple.shade100],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -117,7 +121,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('lib/firebase/loginservices.dart/neu.png', height: 140),
+                Image.asset('lib/firebase/loginservices.dart/neu.png',
+                    height: 140),
                 const SizedBox(height: 20),
                 TextField(
                   controller: email,
@@ -128,7 +133,8 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    prefixIcon: Icon(Icons.email, color: Colors.purple.shade100),
+                    prefixIcon:
+                        Icon(Icons.email, color: Colors.purple.shade100),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -145,10 +151,13 @@ class _LoginPageState extends State<LoginPage> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        prefixIcon: Icon(Icons.lock, color: Colors.purple.shade100),
+                        prefixIcon:
+                            Icon(Icons.lock, color: Colors.purple.shade100),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            obscureText ? Icons.visibility : Icons.visibility_off,
+                            obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             color: Colors.purple.shade100,
                           ),
                           onPressed: togglePasswordVisibility,
@@ -157,11 +166,15 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(() => Forgot());
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Forgot()),
+                        );
                       },
                       child: const Text(
                         'Forgot Password?',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
                       ),
                     ),
                   ],
@@ -186,7 +199,8 @@ class _LoginPageState extends State<LoginPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                     ),
                     child: const Text(
                       'Login',
@@ -218,7 +232,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       padding: EdgeInsets.symmetric(vertical: 15),
                     ),
-                    icon: Image.asset('lib/firebase/loginservices.dart/google.png', height: 24),
+                    icon: Image.asset(
+                        'lib/firebase/loginservices.dart/google.png',
+                        height: 24),
                     label: const Text(
                       'Sign in with Google',
                       style: TextStyle(color: Colors.white),
@@ -228,16 +244,24 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 20),
                 TextButton(
                   onPressed: () {
-                    Get.to(() => SignupPage());
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupPage()),
+                    );
                   },
                   child: const Text(
                     "Don't have an account? Sign Up",
                     style: TextStyle(color: Colors.white),
                   ),
-                ),SizedBox(height:20),
+                ),
+                SizedBox(height: 20),
                 TextButton(
                   onPressed: () {
-                    Get.offAll(() => Homescreen());
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homescreen()),
+                      (route) => false,
+                    );
                   },
                   child: const Text(
                     "Continue as a Free User",

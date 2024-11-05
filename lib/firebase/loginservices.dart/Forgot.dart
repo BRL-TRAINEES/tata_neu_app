@@ -14,13 +14,18 @@ class _ForgotState extends State<Forgot> {
 
   reset() async {
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email.text).then((value) {
-        Get.snackbar('Please check!', 'Password reset link has been sent to your email', backgroundColor: Colors.white);
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: email.text)
+          .then((value) {
+        Get.snackbar(
+            'Please check!', 'Password reset link has been sent to your email',
+            backgroundColor: Colors.white);
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error Message", e.code, backgroundColor: Colors.white);
     } catch (e) {
-      Get.snackbar('Error Message', e.toString(), backgroundColor: Colors.white);
+      Get.snackbar('Error Message', e.toString(),
+          backgroundColor: Colors.white);
     }
   }
 
@@ -56,7 +61,8 @@ class _ForgotState extends State<Forgot> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    prefixIcon: Icon(Icons.email, color: Colors.purple.shade100),
+                    prefixIcon:
+                        Icon(Icons.email, color: Colors.purple.shade100),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -79,7 +85,8 @@ class _ForgotState extends State<Forgot> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                     ),
                     child: const Text(
                       'Send Link',
@@ -90,7 +97,7 @@ class _ForgotState extends State<Forgot> {
                 const SizedBox(height: 20),
                 TextButton(
                   onPressed: () {
-                    Get.back(); 
+                    Navigator.pop(context);
                   },
                   child: const Text(
                     "Back to Login",

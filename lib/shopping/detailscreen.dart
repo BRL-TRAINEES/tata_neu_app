@@ -1,30 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tata_neu/review.dart';
 import 'package:tata_neu/shopping/cartprovider.dart';
 import 'package:tata_neu/shopping/cartscreen.dart';
 import 'package:tata_neu/shopping/datamodel.dart';
-import 'package:hive/hive.dart';
-
-final reviewProvider =
-    StateNotifierProvider<ReviewNotifier, List<Review>>((ref) {
-  return ReviewNotifier();
-});
-
-class ReviewNotifier extends StateNotifier<List<Review>> {
-  ReviewNotifier() : super([]);
-
-  Future<void> addReview(Review review) async {
-    final box = await Hive.openBox<Review>('reviews');
-    await box.add(review);
-    state = [...state, review];
-  }
-
-  Future<List<Review>> getReviewsByItemId(String itemId) async {
-    final box = await Hive.openBox<Review>('reviews');
-    return box.values.where((review) => review.itemId == itemId).toList();
-  }
-}
+import 'package:tata_neu/shopping/reviewprovider.dart';
 
 class DetailsScreen extends ConsumerWidget {
   final Item item;
@@ -34,6 +15,8 @@ class DetailsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reviewController = TextEditingController();
+    final user = FirebaseAuth.instance.currentUser;
+    final userEmail = user?.email ?? 'Anonymous';
 
     return Scaffold(
       body: CustomScrollView(
@@ -163,7 +146,7 @@ class DetailsScreen extends ConsumerWidget {
                           final newReview = Review(
                             reviewId: UniqueKey().toString(),
                             itemId: item.id,
-                            userId: 'user@example.com',
+                            userId: userEmail,
                             reviewText: reviewText,
                             timestamp: DateTime.now(),
                           );
@@ -172,7 +155,9 @@ class DetailsScreen extends ConsumerWidget {
                               .addReview(newReview);
                           reviewController.clear();
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Review submitted.')),
+                            SnackBar(
+                                content: Text('Review submitted.'),
+                                duration: Duration(seconds: 1)),
                           );
                         }
                       },
@@ -191,64 +176,77 @@ class DetailsScreen extends ConsumerWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   SizedBox(height: 5),
-                  FutureBuilder<List<Review>>(
-                    future: ref
-                        .read(reviewProvider.notifier)
-                        .getReviewsByItemId(item.id),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        return Text('No reviews yet.');
-                      }
+                  Consumer(builder: (context, ref, child) {
+                    final reviews = ref.watch(reviewProvider);
+                    final itemReviews = reviews
+                        .where((review) => review.itemId == item.id)
+                        .toList();
 
-                      final reviews = snapshot.data!;
+                    if (itemReviews.isEmpty) {
+                      return Text('No reviews yet.');
+                    }
 
-                      return ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: reviews.length,
-                        itemBuilder: (context, index) {
-                          final review = reviews[index];
-                          return Container(
-                            margin: EdgeInsets.only(bottom: 12),
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 4,
-                                  offset: Offset(0, 2),
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: itemReviews.length,
+                      itemBuilder: (context, index) {
+                        final review = itemReviews[index];
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 12),
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                review.reviewText,
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black87),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'By ${review.userId}',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  review.reviewText,
+                              ),
+                              SizedBox(height: 8),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  await ref
+                                      .read(reviewProvider.notifier)
+                                      .deleteReview(review.reviewId);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text('Review deleted.'),
+                                        duration: Duration(seconds: 1)),
+                                  );
+                                },
+                                child: Text(
+                                  'Delete Review',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.black87),
+                                      color:
+                                          const Color.fromARGB(255, 198, 6, 6)),
                                 ),
-                                SizedBox(height: 8),
-                                Text(
-                                  'By ${review.userId}',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }),
                 ],
               ),
             ),

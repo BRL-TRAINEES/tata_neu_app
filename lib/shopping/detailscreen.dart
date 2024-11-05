@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
+import 'package:tata_neu/review.dart';
 import 'package:tata_neu/shopping/cartprovider.dart';
 import 'package:tata_neu/shopping/cartscreen.dart';
 import 'package:tata_neu/shopping/datamodel.dart';
+import 'package:hive/hive.dart';
 
-final reviewProvider = StateProvider<String>((ref) => '');
+final reviewProvider =
+    StateNotifierProvider<ReviewNotifier, List<Review>>((ref) {
+  return ReviewNotifier();
+});
+
+class ReviewNotifier extends StateNotifier<List<Review>> {
+  ReviewNotifier() : super([]);
+
+  Future<void> addReview(Review review) async {
+    final box = await Hive.openBox<Review>('reviews');
+    await box.add(review);
+    state = [...state, review];
+  }
+
+  Future<List<Review>> getReviewsByItemId(String itemId) async {
+    final box = await Hive.openBox<Review>('reviews');
+    return box.values.where((review) => review.itemId == itemId).toList();
+  }
+}
 
 class DetailsScreen extends ConsumerWidget {
   final Item item;
@@ -14,11 +33,7 @@ class DetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(reviewProvider.notifier).state = '';
-
-    final reviewController = TextEditingController(
-      text: ref.watch(reviewProvider),
-    );
+    final reviewController = TextEditingController();
 
     return Scaffold(
       body: CustomScrollView(
@@ -33,7 +48,12 @@ class DetailsScreen extends ConsumerWidget {
                   size: 50,
                 ),
                 onPressed: () {
-                  Get.to(CartScreen());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartScreen(),
+                    ),
+                  );
                 },
               ),
             ],
@@ -126,25 +146,35 @@ class DetailsScreen extends ConsumerWidget {
                   SizedBox(height: 20),
                   TextField(
                     controller: reviewController,
-                    onSubmitted: (text) =>
-                        ref.read(reviewProvider.notifier).state = text,
                     decoration: InputDecoration(
                       labelText: 'Enter your review',
                       border: OutlineInputBorder(),
                     ),
-                    maxLines: 3,
+                    maxLines: null,
+                    keyboardType: TextInputType.multiline,
+                    textInputAction: TextInputAction.newline,
                   ),
                   SizedBox(height: 20),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {
-                        final review = ref.read(reviewProvider);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Review submitted. $review'),
-                            duration: Duration(seconds: 1),
-                          ),
-                        );
+                      onPressed: () async {
+                        final reviewText = reviewController.text;
+                        if (reviewText.isNotEmpty) {
+                          final newReview = Review(
+                            reviewId: UniqueKey().toString(),
+                            itemId: item.id,
+                            userId: 'user@example.com',
+                            reviewText: reviewText,
+                            timestamp: DateTime.now(),
+                          );
+                          await ref
+                              .read(reviewProvider.notifier)
+                              .addReview(newReview);
+                          reviewController.clear();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Review submitted.')),
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.purple,
@@ -154,6 +184,70 @@ class DetailsScreen extends ConsumerWidget {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'User Reviews',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 5),
+                  FutureBuilder<List<Review>>(
+                    future: ref
+                        .read(reviewProvider.notifier)
+                        .getReviewsByItemId(item.id),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return Text('No reviews yet.');
+                      }
+
+                      final reviews = snapshot.data!;
+
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: reviews.length,
+                        itemBuilder: (context, index) {
+                          final review = reviews[index];
+                          return Container(
+                            margin: EdgeInsets.only(bottom: 12),
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  review.reviewText,
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black87),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'By ${review.userId}',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                 ],
               ),

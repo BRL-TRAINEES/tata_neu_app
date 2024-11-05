@@ -2,12 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tata_neu/firebase/lottie/lottie.dart';
+import 'package:tata_neu/review.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(ReviewAdapter());
+  await Hive.openBox<Review>('reviews');
   await Firebase.initializeApp();
   runApp(ProviderScope(child: MyApp()));
 }

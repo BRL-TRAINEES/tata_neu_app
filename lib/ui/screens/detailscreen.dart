@@ -198,6 +198,13 @@ class DetailsScreen extends ConsumerWidget {
                           decoration: BoxDecoration(
                             color: Colors.grey[200],
                             borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,11 +223,12 @@ class DetailsScreen extends ConsumerWidget {
                                 ),
                               ),
                               SizedBox(height: 8),
+                              // Format the timestamp
                               Text(
                                 'Posted on: ${review.timestamp.toLocal().toString().split(' ')[0]} ${review.timestamp.hour}:${review.timestamp.minute.toString().padLeft(2, '0')}',
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: const Color.fromARGB(255, 75, 73, 73),
+                                  color: Colors.grey[500],
                                 ),
                               ),
                               SizedBox(height: 8),

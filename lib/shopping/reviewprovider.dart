@@ -8,7 +8,14 @@ final reviewProvider =
 });
 
 class ReviewNotifier extends StateNotifier<List<Review>> {
-  ReviewNotifier() : super([]);
+  ReviewNotifier() : super([]) {
+    _loadReviews();
+  }
+
+  Future<void> _loadReviews() async {
+    final box = await Hive.openBox<Review>('reviews');
+    state = box.values.toList();
+  }
 
   Future<void> deleteReview(String reviewId) async {
     final box = await Hive.openBox<Review>('reviews');

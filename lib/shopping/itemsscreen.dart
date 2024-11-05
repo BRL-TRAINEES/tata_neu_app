@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:tata_neu/shopping/cartscreen.dart';
 import 'package:tata_neu/shopping/datamodel.dart';
 import 'package:tata_neu/shopping/detailscreen.dart';
@@ -25,7 +24,12 @@ class ItemListScreen extends ConsumerWidget {
               size: 50,
             ),
             onPressed: () {
-              Get.to(CartScreen());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CartScreen(),
+                ),
+              );
             },
           ),
         ],

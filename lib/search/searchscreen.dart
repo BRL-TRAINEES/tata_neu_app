@@ -5,7 +5,8 @@ import 'package:tata_neu/shopping/datamodel.dart';
 import 'package:tata_neu/shopping/detailscreen.dart';
 import 'package:tata_neu/ui/widgets/categorynavigate.dart';
 
-final searchProvider = StateProvider<List<Item>>((ref) => []);
+final searchModeProvider = StateProvider<String>((ref) => 'Item');
+final searchProvider = StateProvider<List<dynamic>>((ref) => []);
 final categoryProvider = StateProvider<List<String>>((ref) => [
       'Grocery',
       'Fashion',
@@ -25,7 +26,7 @@ class SearchScreen extends ConsumerStatefulWidget {
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
-  String searchMode = 'Item';
+  bool hasCleared = false;
 
   @override
   void initState() {
@@ -37,6 +38,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 
   void performSearch(String query) {
+    final searchMode = ref.read(searchModeProvider);
     final allItemsAsyncValue = ref.read(allItemsProvider);
 
     if (searchMode == 'Category') {
@@ -44,16 +46,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       final matchingCategories = categories.where((category) {
         return category.toLowerCase().contains(query.toLowerCase());
       }).toList();
-
-      ref.read(searchProvider.notifier).state = matchingCategories
-          .map((category) => Item(
-                id: category,
-                name: category,
-                description: 'Category',
-                price: 0.0,
-                imageUrl: '',
-              ))
-          .toList();
+      ref.read(searchProvider.notifier).state = matchingCategories;
     } else if (allItemsAsyncValue is AsyncData<List<Item>>) {
       final allItems = allItemsAsyncValue.value;
       final searchResults = allItems.where((item) {
@@ -66,6 +59,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<String>(searchModeProvider, (previous, next) {
+      if (!hasCleared) {
+        searchController.clear();
+        hasCleared = true;
+      }
+    });
+
+    final searchMode = ref.watch(searchModeProvider);
     final searchResults = ref.watch(searchProvider);
     final allItemsAsyncValue = ref.watch(allItemsProvider);
 
@@ -79,7 +80,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                  onPressed: () => setState(() => searchMode = 'Item'),
+                  onPressed: () {
+                    hasCleared = false;
+                    ref.read(searchModeProvider.notifier).state = 'Item';
+                  },
                   child: Text(
                     'Item',
                     style: TextStyle(
@@ -88,7 +92,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => setState(() => searchMode = 'Category'),
+                  onPressed: () {
+                    hasCleared = false;
+                    ref.read(searchModeProvider.notifier).state = 'Category';
+                  },
                   child: Text(
                     'Category',
                     style: TextStyle(
@@ -131,18 +138,23 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           : ListView.builder(
                               itemCount: searchResults.length,
                               itemBuilder: (context, index) {
-                                final item = searchResults[index];
+                                final result = searchResults[index];
                                 return ListTile(
-                                  title: Text(item.name),
+                                  title: Text(
+                                    searchMode == 'Category'
+                                        ? result as String
+                                        : (result as Item).name,
+                                  ),
                                   onTap: () {
                                     if (searchMode == 'Category') {
-                                      navigateToCategory(context, item.name);
+                                      navigateToCategory(
+                                          context, result as String);
                                     } else {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              DetailsScreen(item: item),
+                                          builder: (context) => DetailsScreen(
+                                              item: result as Item),
                                         ),
                                       );
                                     }
@@ -166,6 +178,4 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     searchController.dispose();
     super.dispose();
   }
-
 }
-

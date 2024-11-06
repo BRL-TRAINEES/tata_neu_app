@@ -12,7 +12,7 @@ class Reviewscreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Reviews'),
-        backgroundColor: Colors.purple, // Set AppBar color
+        backgroundColor: Colors.purple, 
       ),
       body: allItemsAsyncValue.when(
         data: (allItems) {
@@ -25,9 +25,9 @@ class Reviewscreen extends ConsumerWidget {
                   allItems.firstWhere((item) => item.id == review.itemId);
 
               return Card(
-                // Use a Card for better visual separation
+                
                 margin: const EdgeInsets.symmetric(vertical: 8.0),
-                elevation: 4, // Add shadow for depth
+                elevation: 4, 
                 child: ListTile(
                   title: Text(
                     item.name,
@@ -40,12 +40,12 @@ class Reviewscreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(review.reviewText),
-                      SizedBox(height: 4), // Add space between text elements
+                      SizedBox(height: 4), 
                       Text(
                         review.timestamp.toIso8601String(),
                         style: TextStyle(
                           color:
-                              Colors.grey[600], // Lighter color for timestamp
+                              Colors.grey[600], 
                           fontSize: 12,
                         ),
                       ),

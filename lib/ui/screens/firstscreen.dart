@@ -19,15 +19,7 @@ class Firstscreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isFocused = ref.watch(isTextFieldFocusedProvider);
-    final focusNode = FocusNode();
-    if (isFocused) {
-      focusNode.requestFocus();
-    }
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(isTextFieldFocusedProvider.notifier).state = false;
-      focusNode.unfocus();
-    });
+  
 
     final addressAsyncValue = ref.watch(addressProvider);
 
